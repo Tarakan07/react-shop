@@ -1,0 +1,14 @@
+body {
+	background-color: rgb(31, 28, 28);
+}
+body * {
+	color: #fff;
+	font-size: 16px;
+
+	font-family: "Rubik Gemstones", cursive;
+}
+.wrap-project {
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+}

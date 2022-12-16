@@ -1,0 +1,21 @@
+.header-shop {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.header-shop ul {
+	width: 60%;
+	display: flex;
+	justify-content: flex-start;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.header-logo {
+	width: 100px;
+	border-radius: 25px;
+}
+.header-shop ul > li {
+	width: max-content;
+	margin-right: 20px;
+}

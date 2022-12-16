@@ -1,7 +1,20 @@
 import React from "react";
-
+import { Route, Switch } from "react-router-dom";
+import FooterShop from "../footer-shop";
+import HeaderShop from "../header-shop";
+import MainPageShop from "../main-page-shop";
+import "./app.css";
 const App = () => {
-	return <span>start project</span>;
+	return (
+		<div className="wrap-project">
+			<HeaderShop />
+			<Switch>
+				<Route path="/" component={MainPageShop} exact />
+				<Route path="/footer" component={FooterShop} />
+			</Switch>
+			{/* <FooterShop /> */}
+		</div>
+	);
 };
 
 export default App;
