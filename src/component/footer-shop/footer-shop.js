@@ -1,6 +1,10 @@
 import React from "react";
-
+import "./footer-shop.css";
 const FooterShop = () => {
-	return <span>footer shop</span>;
+	return (
+		<div className="block-footer">
+			<span>footer shop</span>
+		</div>
+	);
 };
 export default FooterShop;

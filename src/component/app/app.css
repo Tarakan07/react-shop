@@ -4,8 +4,12 @@ body {
 body * {
 	color: #fff;
 	font-size: 16px;
-
+	position: relative;
 	font-family: "Rubik Gemstones", cursive;
+	display: block;
+}
+a {
+	text-decoration: none;
 }
 .wrap-project {
 	max-width: 1200px;

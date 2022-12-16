@@ -10,9 +10,8 @@ const App = () => {
 			<HeaderShop />
 			<Switch>
 				<Route path="/" component={MainPageShop} exact />
-				<Route path="/footer" component={FooterShop} />
 			</Switch>
-			{/* <FooterShop /> */}
+			<FooterShop />
 		</div>
 	);
 };

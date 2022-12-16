@@ -1,0 +1,10 @@
+.block-footer {
+	height: 100px;
+	margin-top: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.block-footer span {
+	font-size: 45px;
+}

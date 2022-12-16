@@ -13,7 +13,7 @@ const HeaderShop = () => {
 			</Link>
 			<ul>
 				<li>
-					<Link to="/footer">footer</Link>
+					<a href="">Вторая</a>
 				</li>
 				<li>
 					<a href="">третья</a>
