@@ -2,6 +2,8 @@ const reducer = (state, action) => {
 	if (state === undefined) {
 		return {
 			products: [],
+			loading: true,
+			error: null,
 		};
 	}
 

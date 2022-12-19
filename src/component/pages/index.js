@@ -1,2 +1,2 @@
 import MainPageShop from "./main-page-shop";
-export default MainPageShop;
+export { MainPageShop };

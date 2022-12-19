@@ -4,7 +4,7 @@ const shopRequested = () => {
 	};
 };
 
-const shopLoadedSuccess = (products) => {
+const shopLoaded = (products) => {
 	return {
 		type: "FETCH_PRODUCTS_SUCCESS",
 		payload: products,
@@ -17,4 +17,12 @@ const shopFailure = (error) => {
 		payload: error,
 	};
 };
-export { shopRequested, shopLoadedSuccess, shopFailure };
+
+const fetchProducts = (dispatch, shopService) => () => {
+	dispatch(shopRequested());
+	shopService
+		.getAllProducts()
+		.then((data) => dispatch(shopLoaded(data)))
+		.catch((error) => dispatch(shopFailure(error)));
+};
+export { shopRequested, shopLoaded, shopFailure, fetchProducts };

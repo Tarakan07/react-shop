@@ -1,0 +1,8 @@
+.product-block {
+	margin-top: 150px;
+}
+.product-block > h1 {
+	font-size: 45px;
+	text-align: center;
+	margin-top: 50px;
+}

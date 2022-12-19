@@ -1,0 +1,8 @@
+.block-products {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 250px);
+	justify-content: space-between;
+	grid-column-gap: 30px;
+	grid-row-gap: 50px;
+}
