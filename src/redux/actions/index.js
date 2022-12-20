@@ -25,4 +25,18 @@ const fetchProducts = (dispatch, shopService) => () => {
 		.then((data) => dispatch(shopLoaded(data)))
 		.catch((error) => dispatch(shopFailure(error)));
 };
-export { shopRequested, shopLoaded, shopFailure, fetchProducts };
+
+const fetchProductsByID = (dispatch, shopService) => (id) => {
+	dispatch(shopRequested());
+	shopService
+		.getProductsID(id)
+		.then((data) => dispatch(shopLoaded(data)))
+		.catch((error) => dispatch(shopFailure(error)));
+};
+export {
+	shopRequested,
+	shopLoaded,
+	shopFailure,
+	fetchProducts,
+	fetchProductsByID,
+};

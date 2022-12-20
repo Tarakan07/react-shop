@@ -1,0 +1,92 @@
+.section-product {
+	margin-top: 50px;
+}
+.section-product > h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 40px;
+	text-align: center;
+}
+.wrap-product-block {
+	margin-top: 50px;
+	display: flex;
+	justify-content: space-between;
+	grid-column-gap: 150px;
+}
+
+.product-box-description {
+}
+.product-box-description .product-box__buttons {
+	display: flex;
+	justify-content: space-between;
+}
+.product-box-description .product-box__buttons button {
+	text-align: center;
+	margin: 0 auto;
+	border: 1px solid #fff;
+	background: transparent;
+	padding: 10px 15px;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+.product-box-description .product-box__buttons button:hover {
+	border: 1px solid #000;
+	background-color: #fff;
+	color: #000;
+}
+.product-box-description .description {
+	margin-top: 20px;
+}
+.product-box-description .description ul {
+	margin: 0;
+	padding: 0;
+}
+.product-box-description .description ul li * {
+	padding: 0;
+	margin: 0;
+	font-size: 20px;
+}
+.product-box-description .description ul li {
+	display: flex;
+	justify-content: flex-start;
+	grid-column-gap: 15px;
+}
+.product-box-description .description ul li:not(:last-child) {
+	margin-bottom: 15px;
+}
+.product-box-description .description ul li span {
+	width: 35%;
+}
+.product-box-description .description ul li span:after {
+	content: ":";
+}
+.product-box-description .description ul li p {
+	width: 100%;
+}
+
+.product-box__images {
+	width: 500px;
+	height: max-content;
+	margin: 0 auto;
+}
+.product-image-slider {
+	position: relative;
+	overflow-x: hidden;
+	width: 450px;
+	height: 450px;
+}
+.product-box__images-line {
+	top: 0;
+	position: absolute;
+	display: flex;
+	transition: 0.5s;
+}
+.product-box__images-line > div {
+	width: 450px;
+	height: 450px;
+}
+.product-box__images-line > div > img {
+	width: 450px;
+	height: 450px;
+}

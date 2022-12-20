@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import FooterShop from "../footer-shop";
 import HeaderShop from "../header-shop";
-import { MainPageShop } from "../pages";
+import { MainPageShop, ProductPage } from "../pages";
 import "./app.css";
 const App = () => {
 	return (
@@ -16,8 +16,5 @@ const App = () => {
 		</div>
 	);
 };
-const ProductPage = ({ location }) => {
-	console.log(location);
-	return <span>title</span>;
-};
+
 export default App;

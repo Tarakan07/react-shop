@@ -1,2 +1,3 @@
 import MainPageShop from "./main-page-shop";
-export { MainPageShop };
+import ProductPage from "./product-page";
+export { MainPageShop, ProductPage };

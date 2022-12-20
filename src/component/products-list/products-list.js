@@ -19,7 +19,7 @@ class ProductsList extends Component {
 		if (error) {
 			return <ErrorIndicator />;
 		}
-		console.log(products);
+
 		return (
 			<div className="block-products">
 				{products.map((item, idx) => {
@@ -41,5 +41,5 @@ const mapDispatchToProps = (dispatch, { shopService }) => {
 		fetchProducts: fetchProducts(dispatch, shopService),
 	};
 };
-connect(mapStateToProps);
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);
