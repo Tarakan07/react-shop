@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/main-page-shop.css";
 import ProductsList from "../products-list";
-import WithShopService from "../hoc";
+import { WithShopService } from "../hoc";
 const MainPageShop = ({ shopService }) => {
 	return (
 		<div className="product-block">
