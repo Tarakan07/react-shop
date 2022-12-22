@@ -1,6 +1,16 @@
 import React from "react";
 
-const ProductBoxDescription = () => {
+const ProductBoxDescription = ({ descriptionProduct }) => {
+	console.log(descriptionProduct);
+	const {
+		brand,
+		category,
+		description,
+		discountPercentage,
+		rating,
+		stock,
+		price,
+	} = descriptionProduct;
 	return (
 		<div className="product-box-description">
 			<div className="product-box__buttons">
@@ -10,19 +20,32 @@ const ProductBoxDescription = () => {
 			<div className="description">
 				<ul>
 					<li>
-						<span>brand</span>
-						<p>Apple</p>
+						<span>Rating</span>
+						<p>{rating}</p>
 					</li>
 					<li>
-						<span>category</span>
-						<p>smartphones</p>
+						<span>Brand</span>
+						<p>{brand}</p>
 					</li>
 					<li>
-						<span>description</span>
-						<p>
-							SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED
-							technology A12 Bionic chip with ...
-						</p>
+						<span>Category</span>
+						<p>{category}</p>
+					</li>
+					<li>
+						<span>Description</span>
+						<p>{description}</p>
+					</li>
+					<li>
+						<span>Discount percentage</span>
+						<p>{discountPercentage}</p>
+					</li>
+					<li>
+						<span>Stock</span>
+						<p>{stock}</p>
+					</li>
+					<li>
+						<span>Price</span>
+						<p>{price}</p>
 					</li>
 				</ul>
 			</div>

@@ -7,12 +7,24 @@ import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 import { fetchProducts } from "../../redux/actions";
 class ProductsList extends Component {
+	state = {
+		products: [],
+		loading: true,
+		error: null,
+	};
 	componentDidMount() {
 		this.props.fetchProducts();
 	}
+	componentDidUpdate() {
+		this.setState({
+			products: this.props.products,
+			loading: this.props.loading,
+			error: this.props.error,
+		});
+	}
 	render() {
-		const { loading, error } = this.props;
-		const { products } = this.props.products;
+		const { products, loading, error } = this.state;
+
 		if (loading) {
 			return <Spinner />;
 		}
@@ -33,7 +45,7 @@ class ProductsList extends Component {
 		);
 	}
 }
-const mapStateToProps = ({ products, loading, error }) => {
+const mapStateToProps = ({ allProductsList: { products, loading, error } }) => {
 	return { products, loading, error };
 };
 const mapDispatchToProps = (dispatch, { shopService }) => {

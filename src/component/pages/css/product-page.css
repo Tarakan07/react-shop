@@ -50,6 +50,7 @@
 .product-box-description .description ul li {
 	display: flex;
 	justify-content: flex-start;
+	align-items: center;
 	grid-column-gap: 15px;
 }
 .product-box-description .description ul li:not(:last-child) {

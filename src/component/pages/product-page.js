@@ -9,31 +9,32 @@ import ProductBoxImages from "../product-box-images";
 import "./css/product-page.css";
 class ProductPage extends Component {
 	componentDidMount() {
-		this.props.fetchProductsByID(this.props.location.state.id);
+		this.props.fetchProductsByID(this.props.match.params.id);
 	}
 	render() {
-		const { products: product, loading, error } = this.props;
+		console.log(this.props);
+		const { product, loading, error } = this.props;
 		const images = product.images;
 		if (loading) return <Spinner />;
 		if (error) return <ErrorIndicator />;
-		return <BlockProduct images={images} />;
+		return <BlockProduct images={images} product={product} />;
 	}
 }
 
-const BlockProduct = ({ images }) => {
+const BlockProduct = ({ images, product }) => {
 	return (
 		<section className="section-product">
 			<h1>Telephoneeee</h1>
 			<div className="wrap-product-block">
 				<ProductBoxImages images={images} />
-				<ProductBoxDescription />
+				<ProductBoxDescription descriptionProduct={product} />
 			</div>
 		</section>
 	);
 };
 
-const mapStateToProps = ({ products, loading, error }) => {
-	return { products, loading, error };
+const mapStateToProps = ({ onceProduct: { product, loading, error } }) => {
+	return { product, loading, error };
 };
 
 const mapDispatchToProps = (dispatch, { shopService }) => {

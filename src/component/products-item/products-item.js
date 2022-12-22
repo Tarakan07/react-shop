@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./products-item.css";
 const ProductsItem = ({ product }) => {
-	const { brand, category, price, thumbnail, title, rating } = product;
-	const link = title.replace(/\s/g, "");
+	const { id, brand, category, price, thumbnail, title, rating } = product;
 	// to={`/product/${link}`}
+
 	return (
 		<Link
 			to={{
-				pathname: `/product/${link}`,
+				pathname: `/product/${id}`,
 				state: {
-					id: product.id,
+					product,
 				},
 			}}
 		>
