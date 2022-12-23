@@ -14,17 +14,24 @@ class ProductsList extends Component {
 	};
 	componentDidMount() {
 		this.props.fetchProducts();
+		// this.setState({
+		// 	products: this.props.products.products,
+		// 	loading: this.props.loading,
+		// 	error: this.props.error,
+		// });
 	}
-	componentDidUpdate() {
-		this.setState({
-			products: this.props.products,
-			loading: this.props.loading,
-			error: this.props.error,
-		});
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.products !== this.props.products.products) {
+			this.setState({
+				products: this.props.products.products,
+				loading: this.props.loading,
+				error: this.props.error,
+			});
+		}
 	}
+
 	render() {
 		const { products, loading, error } = this.state;
-
 		if (loading) {
 			return <Spinner />;
 		}
