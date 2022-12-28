@@ -8,7 +8,7 @@ import ErrorBoundary from "./component/error-boundary";
 import { ServiceProvider } from "./component/service-context";
 import App from "./component/app";
 import ShopService from "./services-shop/services-shop";
-
+console.log("testgit");
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 const shopService = new ShopService();
 root.render(
