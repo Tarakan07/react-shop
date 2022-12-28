@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./products-item.css";
 const ProductsItem = ({ product }) => {
 	const { id, brand, category, price, thumbnail, title, rating } = product;
-	// to={`/product/${link}`}
 
 	return (
 		<Link
