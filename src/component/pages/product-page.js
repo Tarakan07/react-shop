@@ -12,7 +12,6 @@ class ProductPage extends Component {
 		this.props.fetchProductsByID(this.props.match.params.id);
 	}
 	render() {
-		console.log(this.props);
 		const { product, loading, error } = this.props;
 		const images = product.images;
 		if (loading) return <Spinner />;

@@ -1,4 +1,5 @@
 const updateAllProductsList = (state, action) => {
+	console.log(state);
 	if (state === undefined) {
 		return {
 			products: [],
@@ -27,7 +28,7 @@ const updateAllProductsList = (state, action) => {
 				error: action.payload,
 			};
 		default:
-			return state.updateAllProductsList;
+			return state.allProductsList;
 	}
 };
 
