@@ -1,5 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 import { fetchProductsByID } from "../../redux/actions";

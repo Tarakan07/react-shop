@@ -15,6 +15,7 @@
 }
 
 .product-box-description {
+	min-width: 500px;
 }
 .product-box-description .product-box__buttons {
 	display: flex;
