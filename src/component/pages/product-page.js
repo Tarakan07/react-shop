@@ -22,9 +22,10 @@ class ProductPage extends Component {
 }
 
 const BlockProduct = ({ images, product }) => {
+	console.log(product);
 	return (
 		<section className="section-product">
-			<h1>Telephoneeee</h1>
+			<h1>{`${product.title},(${product.category})`}</h1>
 			<div className="wrap-product-block">
 				<ProductBoxImages images={images} />
 				<ProductBoxDescription descriptionProduct={product} />

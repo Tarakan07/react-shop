@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import BlockDescription from "./block-description";
 const ProductBoxDescription = ({ descriptionProduct, history, match }) => {
-	const [descr, setDescr] = useState(false);
-	console.log(match, history);
+	const [descr, setDescr] = useState({
+		titleBtn: "Show description",
+		show: false,
+	});
 	const toggleDescription = (e) => {
-		if (descr) {
+		if (descr.show) {
+			history.push(match.url);
+			setDescr({
+				titleBtn: "Show description",
+				show: false,
+			});
+		} else {
+			history.push(match.url + "/description");
+			setDescr({
+				titleBtn: "Close description",
+				show: true,
+			});
 		}
-		history.push(match.url + "/description");
-		e.target.innerHTML = "Close description";
 	};
 	return (
 		<div className="product-box-description">
@@ -18,7 +29,7 @@ const ProductBoxDescription = ({ descriptionProduct, history, match }) => {
 					onClick={(e) => toggleDescription(e)}
 					className="change-description"
 				>
-					Show description
+					{descr.titleBtn}
 				</button>
 				<button className="add-to-cart">Add to cart</button>
 			</div>
