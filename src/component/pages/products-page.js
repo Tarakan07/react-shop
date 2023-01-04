@@ -1,10 +1,11 @@
 import React from "react";
 import GetProducts from "../get-products";
-const ProductsPage = (props) => {
+import ProductsFilter from "../products-filter";
+const ProductsPage = () => {
 	return (
 		<div className="product-block">
 			<h1>All products</h1>
-			<GetProducts>{props.children}</GetProducts>
+			<GetProducts />
 		</div>
 	);
 };

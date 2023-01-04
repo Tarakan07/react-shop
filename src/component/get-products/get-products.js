@@ -4,15 +4,26 @@ import { connect } from "react-redux";
 import ProductsList from "../products-list";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
-import { fetchProducts } from "../../redux/actions";
+import { fetchProductCategory, fetchProducts } from "../../redux/actions";
 import { WithShopService } from "../hoc";
+import ProductsFilter from "../products-filter";
 class GetProducts extends Component {
+	state = {
+		category: "laptops",
+	};
 	componentDidMount() {
 		if (this.props.products.products == undefined) {
 			this.props.fetchProducts();
 		}
 	}
-
+	componentDidUpdate(prevProps) {
+		if (this.props.products.products !== prevProps.products.products) {
+			// this.props.fetchProductCategory(this.state.category);
+		}
+	}
+	setCategory = (cat) => {
+		this.setState({ category: cat });
+	};
 	render() {
 		const { products, loading, error } = this.props;
 
@@ -20,12 +31,12 @@ class GetProducts extends Component {
 			return <Spinner />;
 		}
 		if (error) {
-			return <ErrorIndicator />;
+			return <ErrorIndicator error={error} />;
 		}
 
 		return (
 			<React.Fragment>
-				{this.props.children}
+				<ProductsFilter  />
 				<ProductsList products={products} />
 			</React.Fragment>
 		);

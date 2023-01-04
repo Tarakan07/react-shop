@@ -17,6 +17,25 @@ const shopFailure = (error) => {
 		payload: error,
 	};
 };
+const catRequested = () => {
+	return {
+		type: "FETCH_CATEGORIES_REQUEST",
+	};
+};
+
+const catLoaded = (categories) => {
+	return {
+		type: "FETCH_CATEGORIES_SUCCESS",
+		payload: categories,
+	};
+};
+
+const catFailure = (error) => {
+	return {
+		type: "FETCH_CATEGORIES_FAILURE",
+		payload: error,
+	};
+};
 const productRequested = () => {
 	return {
 		type: "FETCH_PRODUCT_REQUEST",
@@ -45,6 +64,13 @@ const fetchProducts = (dispatch, shopService) => () => {
 		.catch((error) => dispatch(shopFailure(error)));
 };
 
+const fetchCategories = (dispatch, shopService) => () => {
+	dispatch(catRequested());
+	shopService
+		.getCategories()
+		.then((data) => dispatch(catLoaded(data)))
+		.catch((error) => dispatch(catFailure(error)));
+};
 const fetchProductsByID = (dispatch, shopService) => (id) => {
 	dispatch(productRequested());
 	shopService
@@ -53,16 +79,25 @@ const fetchProductsByID = (dispatch, shopService) => (id) => {
 		.catch((error) => dispatch(productFailure(error)));
 };
 
-const fetchProductCategory=(dispatch,shopService)=>(id,title)=>{
-	
-}
+const fetchProductCategory = (dispatch, shopService) => (cat) => {
+	dispatch(shopRequested());
+	shopService
+		.getCategoryProducts(cat)
+		.then((data) => dispatch(shopLoaded(data)))
+		.catch((error) => dispatch(shopFailure(error)));
+};
 export {
 	shopRequested,
 	shopLoaded,
 	shopFailure,
+	catRequested,
+	catLoaded,
+	catFailure,
 	productRequested,
 	productLoaded,
 	productFailure,
 	fetchProducts,
 	fetchProductsByID,
+	fetchProductCategory,
+	fetchCategories,
 };

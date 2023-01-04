@@ -13,16 +13,7 @@ const App = () => {
 				<Route path="/" component={MainPageShop} exact />
 				<Route path="/product/:id/" component={ProductPage} />
 
-				<Route
-					path="/products"
-					render={() => {
-						return (
-							<ProductsPage>
-								<ProductsFilter />
-							</ProductsPage>
-						);
-					}}
-				/>
+				<Route path="/products" component={ProductsPage} />
 			</Switch>
 			<FooterShop />
 		</div>

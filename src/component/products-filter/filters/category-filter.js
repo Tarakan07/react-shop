@@ -1,45 +1,61 @@
-import React from "react";
+import React, { Component } from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import Spinner from "../../spinner";
+import { WithShopService } from "../../hoc";
 import ErrorIndicator from "../../error-indicator";
-const CategoryFilter = ({ products, error, loading }) => {
-	const productCat = new Array();
-	productCat.push("All");
-	products.products.filter((obj, index, array) => {
-		if (array.map((el) => el.category).indexOf(obj.category) == index) {
-			productCat.push(obj.category);
+import { fetchCategories } from "../../../redux/actions";
+class CategoryFilter extends Component {
+	componentDidMount() {
+		this.props.fetchCategories();
+	}
+
+	render() {
+		console.log(this.props);
+		const { error, loading, categories } = this.props;
+		const updCat = ["all", ...categories];
+		if (loading) {
+			return <Spinner />;
 		}
-	});
-
-	if (loading) {
-		return <Spinner />;
+		if (error) {
+			return <ErrorIndicator />;
+		}
+		return (
+			<div className="category-filter">
+				<ul>
+					{updCat.map((el, idx) => {
+						if (idx == 0) {
+							return (
+								<li
+									onClick={() => console.log(el)}
+									className="active"
+									key={idx + 1}
+								>
+									{el}
+								</li>
+							);
+						}
+						return <li key={idx + 1}>{el}</li>;
+					})}
+				</ul>
+			</div>
+		);
 	}
-	if (error) {
-		return <ErrorIndicator />;
-	}
-
-	return (
-		<div className="category-filter">
-			<ul>
-				{productCat.map((el, idx) => {
-					if (idx == 0) {
-						return (
-							<li className="active" key={idx + 1}>
-								{el}
-							</li>
-						);
-					}
-					return <li key={idx + 1}>{el}</li>;
-				})}
-			</ul>
-		</div>
-	);
-};
+}
 const mapStateToProps = (state) => {
 	const {
-		allProductsList: { products, loading, error },
+		categories: { categories, loading, error },
 	} = state;
-	return { products, loading, error };
+	return { categories, loading, error };
 };
 
-export default connect(mapStateToProps)(CategoryFilter);
+const mapDispatchToProps = (dispatch, { shopService }) => {
+	return {
+		fetchCategories: fetchCategories(dispatch, shopService),
+	};
+};
+
+export default compose(
+	WithShopService(),
+	connect(mapStateToProps, mapDispatchToProps)
+)(CategoryFilter);
