@@ -1,0 +1,39 @@
+.block-filter {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.block-filter ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	grid-column-gap: 25px;
+}
+.block-filter ul li {
+	border: 1px solid #fff;
+	padding: 5px 10px;
+	border-radius: 50px;
+	cursor: pointer;
+}
+.block-filter ul li:hover {
+	transition: 0.5s;
+	transform: translateY(-10px);
+	background: #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+.block-filter ul li.active {
+	background: #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+.search-filter input {
+	border: 1px solid #fff;
+	border-radius: 30px;
+	outline: none;
+	color: #000;
+	padding: 5px 10px;
+}

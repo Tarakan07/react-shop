@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import FooterShop from "../footer-shop";
 import HeaderShop from "../header-shop";
-import { MainPageShop, ProductPage } from "../pages";
+import { MainPageShop, ProductPage, ProductsPage } from "../pages";
+import ProductsFilter from "../products-filter";
 import "./app.css";
 const App = () => {
 	return (
@@ -11,6 +12,17 @@ const App = () => {
 			<Switch>
 				<Route path="/" component={MainPageShop} exact />
 				<Route path="/product/:id/" component={ProductPage} />
+
+				<Route
+					path="/products"
+					render={() => {
+						return (
+							<ProductsPage>
+								<ProductsFilter />
+							</ProductsPage>
+						);
+					}}
+				/>
 			</Switch>
 			<FooterShop />
 		</div>

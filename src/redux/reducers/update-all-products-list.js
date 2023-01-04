@@ -1,5 +1,4 @@
 const updateAllProductsList = (state, action) => {
-	console.log(state);
 	if (state === undefined) {
 		return {
 			products: [],

@@ -7,6 +7,7 @@ import { fetchProductsByID } from "../../redux/actions";
 import { WithShopService } from "../hoc";
 import ProductBoxDescription from "../product-box-description";
 import ProductBoxImages from "../product-box-images";
+import compose from "../../utils/compose";
 import "./css/product-page.css";
 class ProductPage extends Component {
 	componentDidMount() {
@@ -43,6 +44,7 @@ const mapDispatchToProps = (dispatch, { shopService }) => {
 		fetchProductsByID: (id) => fetchProductsByID(dispatch, shopService)(id),
 	};
 };
-export default WithShopService()(
-	connect(mapStateToProps, mapDispatchToProps)(ProductPage)
-);
+export default compose(
+	WithShopService(),
+	connect(mapStateToProps, mapDispatchToProps)
+)(ProductPage);

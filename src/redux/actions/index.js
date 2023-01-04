@@ -52,6 +52,10 @@ const fetchProductsByID = (dispatch, shopService) => (id) => {
 		.then((data) => dispatch(productLoaded(data)))
 		.catch((error) => dispatch(productFailure(error)));
 };
+
+const fetchProductCategory=(dispatch,shopService)=>(id,title)=>{
+	
+}
 export {
 	shopRequested,
 	shopLoaded,

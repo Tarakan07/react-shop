@@ -1,12 +1,11 @@
 import React from "react";
-import "./css/main-page-shop.css";
 import GetProducts from "../get-products";
-const MainPageShop = () => {
+const ProductsPage = (props) => {
 	return (
 		<div className="product-block">
 			<h1>All products</h1>
-			<GetProducts />
+			<GetProducts>{props.children}</GetProducts>
 		</div>
 	);
 };
-export default MainPageShop;
+export default ProductsPage;
