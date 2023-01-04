@@ -7,7 +7,9 @@ import ErrorIndicator from "../../error-indicator";
 import { fetchCategories } from "../../../redux/actions";
 class CategoryFilter extends Component {
 	componentDidMount() {
-		this.props.fetchCategories();
+		if (this.props.categories.length < 1) {
+			this.props.fetchCategories();
+		}
 	}
 
 	render() {
