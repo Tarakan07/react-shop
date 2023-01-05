@@ -1,4 +1,4 @@
-const updateAllProductsList = (state, action) => {
+const getProductsList = (state, action) => {
 	if (state === undefined) {
 		return {
 			products: [],
@@ -6,7 +6,6 @@ const updateAllProductsList = (state, action) => {
 			error: null,
 		};
 	}
-
 	switch (action.type) {
 		case "FETCH_PRODUCTS_REQUEST":
 			return {
@@ -27,8 +26,8 @@ const updateAllProductsList = (state, action) => {
 				error: action.payload,
 			};
 		default:
-			return state.allProductsList;
+			return state.productsList;
 	}
 };
 
-export default updateAllProductsList;
+export default getProductsList;

@@ -45,6 +45,10 @@
 	margin: 0;
 	padding: 0;
 	font-size: 20px;
+	width: 85%;
+}
+.box-products__descr .price {
+	display: flex;
 }
 .box-products__info {
 	padding: 10px;

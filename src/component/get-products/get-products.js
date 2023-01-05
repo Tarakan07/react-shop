@@ -1,29 +1,35 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import ProductsList from "../products-list";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
-import { fetchProductCategory, fetchProducts } from "../../redux/actions";
+import { fetchProducts } from "../../redux/actions";
 import { WithShopService } from "../hoc";
 import ProductsFilter from "../products-filter";
+import { withRouter } from "react-router";
 class GetProducts extends Component {
 	state = {
-		category: "laptops",
+		category: "all",
 	};
-	componentDidMount() {
-		if (this.props.products.products == undefined) {
-			this.props.fetchProducts();
-		}
-	}
-	componentDidUpdate(prevProps) {
-		if (this.props.products.products !== prevProps.products.products) {
-			// this.props.fetchProductCategory(this.state.category);
-		}
-	}
 	setCategory = (cat) => {
 		this.setState({ category: cat });
 	};
+	componentDidMount() {
+		if (this.props.match.params.filter) {
+			this.setCategory(this.props.match.params.filter);
+			this.props.fetchProducts(this.props.match.params.filter);
+		} else {
+			this.props.fetchProducts("all");
+			return;
+		}
+	}
+	componentDidUpdate(prevProps) {
+		if (prevProps.match.params.filter !== this.props.match.params.filter) {
+			this.props.fetchProducts(this.props.match.params.filter);
+		}
+	}
+
 	render() {
 		const { products, loading, error } = this.props;
 
@@ -36,7 +42,10 @@ class GetProducts extends Component {
 
 		return (
 			<React.Fragment>
-				<ProductsFilter  />
+				<ProductsFilter
+					setCategory={(cat) => this.setCategory(cat)}
+					activeCat={this.state.category}
+				/>
 				<ProductsList products={products} />
 			</React.Fragment>
 		);
@@ -44,17 +53,18 @@ class GetProducts extends Component {
 }
 const mapStateToProps = (state) => {
 	const {
-		allProductsList: { products, loading, error },
+		productsList: { products, loading, error },
 	} = state;
 	return { products, loading, error };
 };
 const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
-		fetchProducts: fetchProducts(dispatch, shopService),
+		fetchProducts: (cat) => fetchProducts(dispatch, shopService)(cat),
 	};
 };
 
 export default compose(
+	withRouter,
 	WithShopService(),
 	connect(mapStateToProps, mapDispatchToProps)
 )(GetProducts);

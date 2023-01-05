@@ -4,12 +4,17 @@ export default class ShopService {
 	_api_product = `${this._api_url}/products`;
 	_api_categories = `${this._api_product}/categories`;
 
-	getAllProducts = async () => {
-		const res = await fetch(this._api_all_products);
-		if (!res.ok) {
-			throw new Error("Error with get data", +res.status);
+	getProducts = async (cat = "all") => {
+		let res = undefined;
+		if (cat !== "all") {
+			res = await fetch(`${this._api_product}/category/${cat}`);
 		}
-		return await res.json();
+		res = await fetch(`${this._api_product}/`);
+		if (!res.ok) {
+			throw new Error("Error with get data");
+		}
+
+		return res.json();
 	};
 	getCategories = async () => {
 		const res = await fetch(this._api_categories);
@@ -18,21 +23,8 @@ export default class ShopService {
 		}
 		return await res.json();
 	};
-	// getCategoryProducts = async (cat) => {
-	// 	const res = await fetch(this.api);
-	// 	console.log(res.json());
-	// 	if (!res.ok) {
-	// 		throw new Error("Error with get data");
-	// 	}
-	// 	const objCat = res.json().then((obj) => {
-	// 		if (cat == "All") return obj;
 
-	// 		return obj.products.filter((el) => el.category == cat);
-	// 	});
-
-	// 	return objCat;
-	// };
-	getProductsID = async (id) => {
+	getProductsByID = async (id) => {
 		const res = await fetch(`${this._api_product}/${id}`);
 		if (!res.ok) {
 			throw new Error("Error with get data", +res.status);

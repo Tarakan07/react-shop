@@ -43,6 +43,10 @@
 	padding: 3px 18px;
 	border-radius: 50px;
 	cursor: pointer;
+}
+.block-filter ul li a {
+	width: 100%;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	text-align: center;
@@ -54,10 +58,16 @@
 	color: #000;
 	border: 1px solid #000;
 }
+.block-filter ul li:hover a {
+	color: #000;
+}
 .block-filter ul li.active {
 	background: #fff;
-	color: #000;
+
 	border: 1px solid #000;
+}
+.block-filter ul li.active a {
+	color: #000;
 }
 .search-filter input {
 	border: 1px solid #fff;

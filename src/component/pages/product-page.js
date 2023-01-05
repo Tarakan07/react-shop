@@ -13,6 +13,7 @@ class ProductPage extends Component {
 	componentDidMount() {
 		this.props.fetchProductsByID(this.props.match.params.id);
 	}
+
 	render() {
 		const { product, loading, error } = this.props;
 		const images = product.images;
@@ -23,7 +24,6 @@ class ProductPage extends Component {
 }
 
 const BlockProduct = ({ images, product }) => {
-	console.log(product);
 	return (
 		<section className="section-product">
 			<h1>{`${product.title},(${product.category})`}</h1>
