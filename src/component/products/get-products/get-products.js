@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import ProductsList from "../../products-list";
+import ProductsList from "../products-list";
 import Spinner from "../../spinner";
 import ErrorIndicator from "../../error-indicator";
 import { fetchProducts } from "../../../redux/actions";

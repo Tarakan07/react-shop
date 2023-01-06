@@ -1,6 +1,6 @@
 import React from "react";
 import "./products-list.css";
-import ProductsItem from "../products-item";
+import ProductsItem from "../products/products-item";
 const ProductsList = ({ products }) => {
 	return (
 		<div className="block-products">
