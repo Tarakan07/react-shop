@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Spinner from "../../spinner";
-import { WithShopService } from "../../hoc";
-import ErrorIndicator from "../../error-indicator";
-import { fetchCategories } from "../../../redux/actions";
+import Spinner from "../../../spinner";
+import { WithShopService } from "../../../hoc";
+import ErrorIndicator from "../../../error-indicator";
+import { fetchCategories } from "../../../../redux/actions";
 class CategoryFilter extends Component {
 	componentDidMount() {
 		if (this.props.categories.length < 1) {

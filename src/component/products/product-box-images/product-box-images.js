@@ -24,12 +24,13 @@ const ProductBoxImages = ({ images }) => {
 		});
 	}, []);
 	const moveSlider = (orient) => {
-		if (orient === 1 && slider.left == 0) {
+		if (orient === 1 && slider.left === 0) {
 			return;
 		}
 		if (
 			orient === -1 &&
-			slider.left == -1 * (slider.count * slider.widthSlide) + slider.widthSlide
+			slider.left ===
+				-1 * (slider.count * slider.widthSlide) + slider.widthSlide
 		) {
 			return;
 		}

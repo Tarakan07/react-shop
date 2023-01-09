@@ -5,8 +5,8 @@ import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 import { fetchProductsByID } from "../../redux/actions";
 import { WithShopService } from "../hoc";
-import ProductBoxDescription from "../product-box-description";
-import ProductBoxImages from "../product-box-images";
+import ProductBoxDescription from "../products/product-box-description";
+import ProductBoxImages from "../products/product-box-images";
 import compose from "../../utils/compose";
 import "./css/product-page.css";
 class ProductPage extends Component {

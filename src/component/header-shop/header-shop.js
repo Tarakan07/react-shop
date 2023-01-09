@@ -12,7 +12,12 @@ const HeaderShop = () => {
 				/>
 			</Link>
 			<ul>
-				<Link to="/products">Products</Link>
+				<li>
+					<Link to="/products/">Products</Link>
+				</li>
+				<li>
+					<Link to="/posts/">Posts</Link>
+				</li>
 			</ul>
 		</div>
 	);

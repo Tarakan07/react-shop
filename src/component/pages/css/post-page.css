@@ -1,0 +1,20 @@
+.section-post {
+	margin-top: 50px;
+}
+.section-post > h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 40px;
+	text-align: center;
+}
+
+.wrap-post-block {
+	margin-top: 50px;
+}
+.category-post {
+	font-size: 20px;
+}
+.body-post {
+	margin-top: 50px;
+	width: 60%;
+}

@@ -32,7 +32,8 @@ class GetProducts extends Component {
 
 	render() {
 		const { products, loading, error } = this.props;
-
+		const titlePage =
+			this.state.category === "all" ? "All products" : this.state.category;
 		if (loading) {
 			return <Spinner />;
 		}
@@ -42,6 +43,7 @@ class GetProducts extends Component {
 
 		return (
 			<React.Fragment>
+				<h1>{titlePage}</h1>
 				<ProductsFilter
 					setCategory={(cat) => this.setCategory(cat)}
 					activeCat={this.state.category}

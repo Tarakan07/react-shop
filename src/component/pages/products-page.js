@@ -1,10 +1,8 @@
 import React from "react";
-import GetProducts from "../get-products";
-import ProductsFilter from "../products-filter";
+import GetProducts from "../products/get-products";
 const ProductsPage = () => {
 	return (
 		<div className="product-block">
-			<h1>All products</h1>
 			<GetProducts />
 		</div>
 	);

@@ -1,0 +1,35 @@
+.post-list {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 30%);
+	justify-content: space-between;
+	grid-column-gap: 30px;
+	grid-row-gap: 50px;
+}
+
+.box-post {
+	width: 100%;
+}
+.box-post > a {
+	cursor: pointer;
+}
+.box-post img {
+	width: 100%;
+	height: auto;
+}
+
+.post-category {
+	display: flex;
+	padding-top: 10px;
+	grid-column-gap: 7px;
+}
+.post-info p {
+	margin: 0;
+	padding: 0;
+}
+.post-info .post-title {
+	font-size: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	line-height: 90%;
+}

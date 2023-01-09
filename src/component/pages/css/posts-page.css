@@ -1,0 +1,8 @@
+.posts-block {
+	margin-top: 150px;
+}
+.posts-block > h1 {
+	font-size: 45px;
+	text-align: center;
+	margin-top: 50px;
+}
