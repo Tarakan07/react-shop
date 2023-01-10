@@ -11,6 +11,7 @@ const PostList = ({ loading, error, posts, fetchPosts }) => {
 	useEffect(() => {
 		fetchPosts();
 	}, [fetchPosts]);
+
 	if (loading) {
 		return <Spinner />;
 	}

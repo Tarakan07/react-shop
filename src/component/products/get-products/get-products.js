@@ -11,9 +11,15 @@ import { withRouter } from "react-router";
 class GetProducts extends Component {
 	state = {
 		category: "all",
+		search: "",
 	};
 	setCategory = (cat) => {
-		this.setState({ category: cat });
+		this.setState((state) => {
+			return {
+				...state,
+				category: cat,
+			};
+		});
 	};
 	componentDidMount() {
 		if (this.props.match.params.filter) {
@@ -21,7 +27,6 @@ class GetProducts extends Component {
 			this.props.fetchProducts(this.props.match.params.filter);
 		} else {
 			this.props.fetchProducts("all");
-			return;
 		}
 	}
 	componentDidUpdate(prevProps) {
@@ -29,9 +34,29 @@ class GetProducts extends Component {
 			this.props.fetchProducts(this.props.match.params.filter);
 		}
 	}
+	searchFilter = (value) => {
+		this.setState((state) => {
+			return {
+				...state,
+				search: value,
+			};
+		});
+	};
+	visibleProducts = (products, valueSearch) => {
+		if (products.products !== undefined) {
+			const newProductsList = products.products.filter((el) => {
+				return el.brand.toLowerCase().indexOf(valueSearch.toLowerCase()) > -1;
+			});
 
+			return { products: newProductsList };
+		}
+		return {
+			products: products,
+		};
+	};
 	render() {
 		const { products, loading, error } = this.props;
+		const visibleProducts = this.visibleProducts(products, this.state.search);
 		const titlePage =
 			this.state.category === "all" ? "All products" : this.state.category;
 		if (loading) {
@@ -47,8 +72,10 @@ class GetProducts extends Component {
 				<ProductsFilter
 					setCategory={(cat) => this.setCategory(cat)}
 					activeCat={this.state.category}
+					searchFilter={(value) => this.searchFilter(value)}
 				/>
-				<ProductsList products={products} />
+
+				<ProductsList products={visibleProducts} />
 			</React.Fragment>
 		);
 	}
