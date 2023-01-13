@@ -1,0 +1,13 @@
+.loadmore-btn {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+.loadmore-btn button {
+	background: transparent;
+	padding: 15px 20px;
+	border-radius: 50px;
+	font-size: 18px;
+	border: 1px solid #fff;
+	cursor: pointer;
+}

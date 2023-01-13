@@ -2,22 +2,34 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import ProductsList from "../products-list";
-import Spinner from "../../spinner";
 import ErrorIndicator from "../../error-indicator";
-import { fetchProducts } from "../../../redux/actions";
+import { fetchProducts, fetchLoadmoreProducts } from "../../../redux/actions";
 import { WithShopService } from "../../hoc";
 import ProductsFilter from "../products-filter";
 import { withRouter } from "react-router";
+import LoadmoreProducts from "../loadmore-products";
 class GetProducts extends Component {
 	state = {
 		category: "all",
 		search: "",
+		skip: 0,
+		limit: 0,
+		total: 100,
 	};
 	setCategory = (cat) => {
 		this.setState((state) => {
 			return {
 				...state,
 				category: cat,
+			};
+		});
+	};
+	setCountProducts = () => {
+		this.setState((state) => {
+			return {
+				...state,
+				skip: state.skip + 10,
+				limit: 10,
 			};
 		});
 	};
@@ -29,9 +41,16 @@ class GetProducts extends Component {
 			this.props.fetchProducts("all");
 		}
 	}
-	componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.match.params.filter !== this.props.match.params.filter) {
 			this.props.fetchProducts(this.props.match.params.filter);
+		}
+		if (prevState.skip !== this.state.skip) {
+			this.props.fetchLoadmoreProducts(
+				this.props.match.params.filter,
+				this.state.skip,
+				this.state.limit
+			);
 		}
 	}
 	searchFilter = (value) => {
@@ -57,11 +76,19 @@ class GetProducts extends Component {
 	render() {
 		const { products, loading, error } = this.props;
 		const visibleProducts = this.visibleProducts(products, this.state.search);
+
 		const titlePage =
 			this.state.category === "all" ? "All products" : this.state.category;
-		if (loading) {
-			return <Spinner />;
-		}
+		const showLoadMore =
+			this.state.skip !== this.state.total - 10
+				? visibleProducts.products.length > 9
+					? true
+					: false
+				: false;
+
+		// if (loading) {
+		// 	return <Spinner />;
+		// }
 		if (error) {
 			return <ErrorIndicator error={error} />;
 		}
@@ -76,21 +103,37 @@ class GetProducts extends Component {
 					/>
 
 					<ProductsList products={visibleProducts} />
+					<LoadmoreProducts
+						loadmoreProducts={() => this.setCountProducts()}
+						showLoadMore={showLoadMore}
+						loading={loading}
+					/>
 				</React.Fragment>
 			);
 		}
-		return <ProductsList products={visibleProducts} />;
+		return (
+			<React.Fragment>
+				<ProductsList products={visibleProducts} />
+				<LoadmoreProducts
+					loadmoreProducts={this.setCountProducts}
+					showLoadMore={showLoadMore}
+					loading={loading}
+				/>
+			</React.Fragment>
+		);
 	}
 }
 const mapStateToProps = (state) => {
 	const {
-		productsList: { products, loading, error },
+		productsList: { products, loading, error, skip, limit },
 	} = state;
-	return { products, loading, error };
+	return { products, loading, error, skip, limit };
 };
 const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
 		fetchProducts: (cat) => fetchProducts(dispatch, shopService)(cat),
+		fetchLoadmoreProducts: (cat, skip, limit) =>
+			fetchLoadmoreProducts(dispatch, shopService)(cat)(skip, limit),
 	};
 };
 

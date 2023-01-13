@@ -1,6 +1,12 @@
-import fetchProducts from "./shop-action";
+import { fetchProducts, fetchLoadmoreProducts } from "./shop-action";
 import fetchCategories from "./cat-action";
 import fetchProductsByID from "./product-action";
 import fetchPosts from "./post-action";
 
-export { fetchProducts, fetchCategories, fetchProductsByID, fetchPosts };
+export {
+	fetchProducts,
+	fetchLoadmoreProducts,
+	fetchCategories,
+	fetchProductsByID,
+	fetchPosts,
+};
