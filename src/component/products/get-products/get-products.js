@@ -65,19 +65,21 @@ class GetProducts extends Component {
 		if (error) {
 			return <ErrorIndicator error={error} />;
 		}
+		if (this.props.showProductFilter) {
+			return (
+				<React.Fragment>
+					<h1>{titlePage}</h1>
+					<ProductsFilter
+						setCategory={(cat) => this.setCategory(cat)}
+						activeCat={this.state.category}
+						searchFilter={(value) => this.searchFilter(value)}
+					/>
 
-		return (
-			<React.Fragment>
-				<h1>{titlePage}</h1>
-				<ProductsFilter
-					setCategory={(cat) => this.setCategory(cat)}
-					activeCat={this.state.category}
-					searchFilter={(value) => this.searchFilter(value)}
-				/>
-
-				<ProductsList products={visibleProducts} />
-			</React.Fragment>
-		);
+					<ProductsList products={visibleProducts} />
+				</React.Fragment>
+			);
+		}
+		return <ProductsList products={visibleProducts} />;
 	}
 }
 const mapStateToProps = (state) => {

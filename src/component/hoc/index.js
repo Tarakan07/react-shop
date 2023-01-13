@@ -1,2 +1,3 @@
 import WithShopService from "./with-shop-service";
-export { WithShopService };
+import WithDataProducts from "./with-data-products";
+export { WithShopService, WithDataProducts };

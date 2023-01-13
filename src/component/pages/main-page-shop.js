@@ -4,7 +4,7 @@ import GetProducts from "../products/get-products";
 const MainPageShop = () => {
 	return (
 		<div className="product-block">
-			<GetProducts />
+			<GetProducts showProductFilter={false} />
 		</div>
 	);
 };

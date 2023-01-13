@@ -3,7 +3,7 @@ import GetProducts from "../products/get-products";
 const ProductsPage = () => {
 	return (
 		<div className="product-block">
-			<GetProducts />
+			<GetProducts showProductFilter={true}/>
 		</div>
 	);
 };
