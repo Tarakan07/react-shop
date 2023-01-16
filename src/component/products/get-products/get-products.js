@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import ProductsList from "../products-list";
-import ErrorIndicator from "../../error-indicator";
 import { fetchProducts, fetchLoadmoreProducts } from "../../../redux/actions";
 import { WithShopService } from "../../hoc";
 import ProductsFilter from "../products-filter";
@@ -12,10 +11,9 @@ class GetProducts extends Component {
 	state = {
 		category: "all",
 		search: "",
-		skip: 0,
-		limit: 0,
 		total: 100,
 	};
+
 	setCategory = (cat) => {
 		this.setState((state) => {
 			return {
@@ -25,13 +23,11 @@ class GetProducts extends Component {
 		});
 	};
 	setCountProducts = () => {
-		this.setState((state) => {
-			return {
-				...state,
-				skip: state.skip + 10,
-				limit: 10,
-			};
-		});
+		this.props.fetchLoadmoreProducts(
+			this.props.match.params.filter,
+			this.props.skip + 10,
+			this.props.limit
+		);
 	};
 	componentDidMount() {
 		if (this.props.match.params.filter) {
@@ -41,16 +37,9 @@ class GetProducts extends Component {
 			this.props.fetchProducts("all");
 		}
 	}
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.filter !== this.props.match.params.filter) {
 			this.props.fetchProducts(this.props.match.params.filter);
-		}
-		if (prevState.skip !== this.state.skip) {
-			this.props.fetchLoadmoreProducts(
-				this.props.match.params.filter,
-				this.state.skip,
-				this.state.limit
-			);
 		}
 	}
 	searchFilter = (value) => {
@@ -80,18 +69,12 @@ class GetProducts extends Component {
 		const titlePage =
 			this.state.category === "all" ? "All products" : this.state.category;
 		const showLoadMore =
-			this.state.skip !== this.state.total - 10
+			this.props.skip !== this.state.total - 10
 				? visibleProducts.products.length > 9
 					? true
 					: false
 				: false;
 
-		// if (loading) {
-		// 	return <Spinner />;
-		// }
-		if (error) {
-			return <ErrorIndicator error={error} />;
-		}
 		if (this.props.showProductFilter) {
 			return (
 				<React.Fragment>
@@ -100,9 +83,15 @@ class GetProducts extends Component {
 						setCategory={(cat) => this.setCategory(cat)}
 						activeCat={this.state.category}
 						searchFilter={(value) => this.searchFilter(value)}
+						loading={loading}
+						error={error}
 					/>
 
-					<ProductsList products={visibleProducts} />
+					<ProductsList
+						products={visibleProducts}
+						loading={loading}
+						error={error}
+					/>
 					<LoadmoreProducts
 						loadmoreProducts={() => this.setCountProducts()}
 						showLoadMore={showLoadMore}
@@ -113,7 +102,11 @@ class GetProducts extends Component {
 		}
 		return (
 			<React.Fragment>
-				<ProductsList products={visibleProducts} />
+				<ProductsList
+					products={visibleProducts}
+					loading={loading}
+					error={error}
+				/>
 				<LoadmoreProducts
 					loadmoreProducts={this.setCountProducts}
 					showLoadMore={showLoadMore}

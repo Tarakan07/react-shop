@@ -18,3 +18,20 @@
 	margin-top: 50px;
 	width: 60%;
 }
+.section-post .comments {
+	margin-top: 50px;
+	position: relative;
+}
+.section-post .comments:before {
+	content: "";
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	border-top: 1px solid #fff;
+}
+.section-post .comments > h2 {
+	font-size: 30px;
+}

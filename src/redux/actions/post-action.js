@@ -4,13 +4,22 @@ const postsRequested = () => {
 	};
 };
 
-const postsLoaded = (product) => {
+const postsLoaded = (posts) => {
 	return {
 		type: "FETCH_POSTS_SUCCESS",
-		payload: product,
+		payload: posts,
+		skip: 0,
+		limit: 6,
 	};
 };
-
+const postsLoadmoreLoaded = (posts) => (skip, limit) => {
+	return {
+		type: "FETCH_LOADMORE_POSTS_SUCCESS",
+		payload: posts,
+		skip: skip,
+		limit: limit,
+	};
+};
 const postsFailure = (error) => {
 	return {
 		type: "FETCH_POSTS_FAILURE",
@@ -25,5 +34,11 @@ const fetchPosts = (dispatch, shopService) => () => {
 		.then((data) => dispatch(postsLoaded(data)))
 		.catch((error) => dispatch(postsFailure(error)));
 };
-
-export default fetchPosts;
+const fetchLoadmorePosts = (dispatch, shopService) => (skip, limit) => {
+	dispatch(postsRequested());
+	shopService
+		.getPosts(skip, limit)
+		.then((data) => dispatch(postsLoadmoreLoaded(data)(skip, limit)))
+		.catch((error) => dispatch(postsFailure(error)));
+};
+export { fetchPosts, fetchLoadmorePosts };

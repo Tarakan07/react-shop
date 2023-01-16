@@ -1,8 +1,9 @@
 import React from "react";
+import PostComments from "../posts/post-comments";
 import "./css/post-page.css";
 const PostPage = (props) => {
 	if (props.location.state !== undefined) {
-		const { title, tags, body } = props.location.state.post;
+		const { id, title, tags, body } = props.location.state.post;
 
 		return (
 			<div className="section-post">
@@ -15,6 +16,10 @@ const PostPage = (props) => {
 						})}
 					</div>
 					<div className="body-post">{body}</div>
+				</div>
+				<div className="comments">
+					<h2>Comments:</h2>
+					<PostComments postId={id} />
 				</div>
 			</div>
 		);

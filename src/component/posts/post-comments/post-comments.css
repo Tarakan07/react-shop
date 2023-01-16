@@ -1,0 +1,9 @@
+.box-comment {
+	border-bottom: 1px solid gray;
+}
+.box-comment:not(:first-child) {
+	margin-top: 20px;
+}
+.box-comment {
+  
+}

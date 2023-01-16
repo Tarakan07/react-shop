@@ -43,7 +43,6 @@ const fetchLoadmoreProducts =
 				limit
 			)(cat)
 			.then((data) => dispatch(productsLoadmoreLoaded(data)(skip, limit)))
-			.then((el) => console.log(el))
 			.catch((error) => dispatch(productsFailure(error)));
 	};
 export { fetchProducts, fetchLoadmoreProducts };

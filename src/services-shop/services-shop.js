@@ -4,7 +4,7 @@ export default class ShopService {
 	_api_product = `${this._api_url}/products`;
 	_api_categories = `${this._api_product}/categories`;
 	_api_posts = `${this._api_url}/posts`;
-
+	_api_comments = `${this._api_url}/comments/post`;
 	getProducts =
 		(skip = 0, limit = 10) =>
 		async (cat = "all") => {
@@ -38,9 +38,17 @@ export default class ShopService {
 		return await res.json();
 	};
 
-	getPosts = async () => {
-		const res = await fetch(`${this._api_posts}?limit=150`);
+	getPosts = async (skip = 0, limit = 6) => {
+		const res = await fetch(`${this._api_posts}?skip=${skip}&limit=${limit}`);
 
+		if (!res.ok) {
+			throw new Error("Error with get data");
+		}
+
+		return res.json();
+	};
+	getCommentPost = async (id) => {
+		const res = await fetch(`${this._api_comments}/${id}`);
 		if (!res.ok) {
 			throw new Error("Error with get data");
 		}

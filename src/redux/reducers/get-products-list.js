@@ -13,8 +13,8 @@ const getProductsList = (state, action) => {
 		case "FETCH_PRODUCTS_REQUEST":
 			return {
 				products: state.productsList.products,
-				skip: null,
-				limit: null,
+				skip: 0,
+				limit: 10,
 				loading: true,
 				error: null,
 			};
