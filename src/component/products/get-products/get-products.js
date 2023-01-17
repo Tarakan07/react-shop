@@ -11,7 +11,6 @@ class GetProducts extends Component {
 	state = {
 		category: "all",
 		search: "",
-		total: 100,
 	};
 
 	setCategory = (cat) => {
@@ -69,7 +68,7 @@ class GetProducts extends Component {
 		const titlePage =
 			this.state.category === "all" ? "All products" : this.state.category;
 		const showLoadMore =
-			this.props.skip !== this.state.total - 10
+			this.props.skip !== this.props.total - 10
 				? visibleProducts.products.length > 9
 					? true
 					: false
@@ -118,9 +117,9 @@ class GetProducts extends Component {
 }
 const mapStateToProps = (state) => {
 	const {
-		productsList: { products, loading, error, skip, limit },
+		productsList: { products, loading, error, skip, limit, total },
 	} = state;
-	return { products, loading, error, skip, limit };
+	return { products, loading, error, skip, limit, total };
 };
 const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {

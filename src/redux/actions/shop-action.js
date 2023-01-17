@@ -10,6 +10,7 @@ const productsLoaded = (product) => {
 		payload: product,
 		skip: 0,
 		limit: 10,
+		total: 100,
 	};
 };
 const productsLoadmoreLoaded = (product) => (skip, limit) => {
@@ -18,6 +19,7 @@ const productsLoadmoreLoaded = (product) => (skip, limit) => {
 		payload: product,
 		skip: skip,
 		limit: limit,
+		total: 100,
 	};
 };
 const productsFailure = (error) => {

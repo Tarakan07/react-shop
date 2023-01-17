@@ -10,6 +10,7 @@ const postsLoaded = (posts) => {
 		payload: posts,
 		skip: 0,
 		limit: 6,
+		total: 150,
 	};
 };
 const postsLoadmoreLoaded = (posts) => (skip, limit) => {
@@ -38,6 +39,10 @@ const fetchLoadmorePosts = (dispatch, shopService) => (skip, limit) => {
 	dispatch(postsRequested());
 	shopService
 		.getPosts(skip, limit)
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
 		.then((data) => dispatch(postsLoadmoreLoaded(data)(skip, limit)))
 		.catch((error) => dispatch(postsFailure(error)));
 };

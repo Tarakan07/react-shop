@@ -1,28 +1,28 @@
 const getProductsList = (state, action) => {
+	const initialState = {
+		products: [],
+		skip: null,
+		limit: null,
+		loading: true,
+		error: null,
+		total: null,
+	};
 	if (state === undefined) {
-		return {
-			products: [],
-			skip: null,
-			limit: null,
-			loading: true,
-			error: null,
-		};
+		return initialState;
 	}
 
 	switch (action.type) {
 		case "FETCH_PRODUCTS_REQUEST":
 			return {
+				...initialState,
 				products: state.productsList.products,
-				skip: 0,
-				limit: 10,
-				loading: true,
-				error: null,
 			};
 		case "FETCH_PRODUCTS_SUCCESS":
 			return {
 				products: action.payload,
 				skip: action.skip,
 				limit: action.limit,
+				total: action.total,
 				loading: false,
 				error: null,
 			};
@@ -36,14 +36,13 @@ const getProductsList = (state, action) => {
 				},
 				skip: action.skip,
 				limit: action.limit,
+				total: action.total,
 				loading: false,
 				error: null,
 			};
 		case "FETCH_PRODUCTS_FAILURE":
 			return {
-				products: [],
-				skip: null,
-				limit: null,
+				...initialState,
 				loading: false,
 				error: action.payload,
 			};

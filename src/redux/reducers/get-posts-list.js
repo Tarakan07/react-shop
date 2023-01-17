@@ -1,28 +1,28 @@
 const getPostsList = (state, action) => {
+	const initialState = {
+		posts: [],
+		skip: null,
+		limit: null,
+		total: null,
+		loading: true,
+		error: null,
+	};
 	if (state === undefined) {
-		return {
-			posts: [],
-			skip: null,
-			limit: null,
-			loading: true,
-			error: null,
-		};
+		return initialState;
 	}
 
 	switch (action.type) {
 		case "FETCH_POSTS_REQUEST":
 			return {
+				...initialState,
 				posts: state.postsList.posts,
-				skip: 0,
-				limit: 6,
-				loading: true,
-				error: null,
 			};
 		case "FETCH_POSTS_SUCCESS":
 			return {
 				posts: action.payload,
 				skip: action.skip,
 				limit: action.limit,
+				total: action.total,
 				loading: false,
 				error: null,
 			};
@@ -33,14 +33,13 @@ const getPostsList = (state, action) => {
 				},
 				skip: action.skip,
 				limit: action.limit,
+				total: action.total,
 				loading: false,
 				error: null,
 			};
 		case "FETCH_POSTS_FAILURE":
 			return {
-				posts: [],
-				skip: null,
-				limit: null,
+				...initialState,
 				loading: false,
 				error: action.payload,
 			};
