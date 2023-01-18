@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import ProductsList from "../products-list";
-import { fetchProducts, fetchLoadmoreProducts } from "../../../redux/actions";
+import { fetchProducts } from "../../../redux/actions";
 import { WithShopService } from "../../hoc";
 import ProductsFilter from "../products-filter";
 import { withRouter } from "react-router";
@@ -22,7 +22,7 @@ class GetProducts extends Component {
 		});
 	};
 	setCountProducts = () => {
-		this.props.fetchLoadmoreProducts(
+		this.props.fetchProducts(
 			this.props.match.params.filter,
 			this.props.skip + 10,
 			this.props.limit
@@ -38,6 +38,7 @@ class GetProducts extends Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.filter !== this.props.match.params.filter) {
+			console.log("yes");
 			this.props.fetchProducts(this.props.match.params.filter);
 		}
 	}
@@ -64,7 +65,6 @@ class GetProducts extends Component {
 	render() {
 		const { products, loading, error } = this.props;
 		const visibleProducts = this.visibleProducts(products, this.state.search);
-
 		const titlePage =
 			this.state.category === "all" ? "All products" : this.state.category;
 		const showLoadMore =
@@ -123,9 +123,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
-		fetchProducts: (cat) => fetchProducts(dispatch, shopService)(cat),
-		fetchLoadmoreProducts: (cat, skip, limit) =>
-			fetchLoadmoreProducts(dispatch, shopService)(cat)(skip, limit),
+		fetchProducts: (cat, skip, limit) =>
+			fetchProducts(dispatch, shopService)(cat)(skip, limit),
 	};
 };
 

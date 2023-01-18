@@ -5,9 +5,11 @@ export default class ShopService {
 	_api_categories = `${this._api_product}/categories`;
 	_api_posts = `${this._api_url}/posts`;
 	_api_comments = `${this._api_url}/comments/post`;
+	_api_quotes = `${this._api_url}/quotes`;
 	getProducts =
-		(skip = 0, limit = 10) =>
+		(skip, limit) =>
 		async (cat = "all") => {
+			console.log(skip, limit);
 			let res = undefined;
 			if (cat !== "all") {
 				res = await fetch(`${this._api_product}/category/${cat}`);
@@ -38,7 +40,7 @@ export default class ShopService {
 		return await res.json();
 	};
 
-	getPosts = async (skip = 0, limit = 6) => {
+	getPosts = async (skip, limit) => {
 		const res = await fetch(`${this._api_posts}?skip=${skip}&limit=${limit}`);
 
 		if (!res.ok) {
@@ -54,5 +56,12 @@ export default class ShopService {
 		}
 
 		return res.json();
+	};
+
+	getQuotes = async (skip, limit) => {
+		const res = await fetch(`${this._api_quotes}?skip=${skip}&limit=${limit}`);
+		if (!res.ok) {
+			throw new Error("Error with get data");
+		}
 	};
 }

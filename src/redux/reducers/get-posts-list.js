@@ -1,9 +1,9 @@
 const getPostsList = (state, action) => {
 	const initialState = {
 		posts: [],
-		skip: null,
-		limit: null,
-		total: null,
+		skip: 0,
+		limit: 6,
+		total: 150,
 		loading: true,
 		error: null,
 	};
@@ -17,19 +17,12 @@ const getPostsList = (state, action) => {
 				...initialState,
 				posts: state.postsList.posts,
 			};
+
 		case "FETCH_POSTS_SUCCESS":
-			return {
-				posts: action.payload,
-				skip: action.skip,
-				limit: action.limit,
-				total: action.total,
-				loading: false,
-				error: null,
-			};
-		case "FETCH_LOADMORE_POSTS_SUCCESS":
+			const oldState = action.skip !== 0 ? state.postsList.posts.posts : [];
 			return {
 				posts: {
-					posts: [...state.postsList.posts.posts, ...action.payload.posts],
+					posts: [...oldState, ...action.payload.posts],
 				},
 				skip: action.skip,
 				limit: action.limit,

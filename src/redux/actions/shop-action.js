@@ -4,18 +4,9 @@ const productsRequested = () => {
 	};
 };
 
-const productsLoaded = (product) => {
+const productsLoaded = (product) => (skip, limit) => {
 	return {
 		type: "FETCH_PRODUCTS_SUCCESS",
-		payload: product,
-		skip: 0,
-		limit: 10,
-		total: 100,
-	};
-};
-const productsLoadmoreLoaded = (product) => (skip, limit) => {
-	return {
-		type: "FETCH_LOADMORE_PRODUCTS_SUCCESS",
 		payload: product,
 		skip: skip,
 		limit: limit,
@@ -29,22 +20,18 @@ const productsFailure = (error) => {
 	};
 };
 
-const fetchProducts = (dispatch, shopService) => (cat) => {
-	dispatch(productsRequested());
-	shopService
-		.getProducts()(cat)
-		.then((data) => dispatch(productsLoaded(data)))
-		.catch((error) => dispatch(productsFailure(error)));
-};
-const fetchLoadmoreProducts =
-	(dispatch, shopService) => (cat) => (skip, limit) => {
+const fetchProducts =
+	(dispatch, shopService) =>
+	(cat) =>
+	(skip = 0, limit = 10) => {
 		dispatch(productsRequested());
+
 		shopService
 			.getProducts(
 				skip,
 				limit
 			)(cat)
-			.then((data) => dispatch(productsLoadmoreLoaded(data)(skip, limit)))
+			.then((data) => dispatch(productsLoaded(data)(skip, limit)))
 			.catch((error) => dispatch(productsFailure(error)));
 	};
-export { fetchProducts, fetchLoadmoreProducts };
+export default fetchProducts;

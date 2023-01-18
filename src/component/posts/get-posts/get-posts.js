@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { WithShopService } from "../../hoc";
-import { fetchPosts, fetchLoadmorePosts } from "../../../redux/actions";
+import { fetchPosts } from "../../../redux/actions";
 import PostList from "../post-list";
 
 const GetPosts = ({
@@ -10,7 +10,6 @@ const GetPosts = ({
 	error,
 	posts,
 	fetchPosts,
-	fetchLoadmorePosts,
 	skip,
 	total,
 	limit,
@@ -18,27 +17,18 @@ const GetPosts = ({
 	useEffect(() => {
 		fetchPosts();
 	}, [fetchPosts]);
-	useCallback(
-		(window.onscroll = (event) => {
-			const height = document.body.offsetHeight;
-			const screenHeight = window.innerHeight;
-			const scrolled = window.scrollY;
 
-			// Обозначим порог, по приближении к которому
-			// будем вызывать какое-то действие.
-			// В нашем случае — четверть экрана до конца страницы:
-			const threshold = height - screenHeight / 6;
+	window.onscroll = (event) => {
+		const height = document.body.offsetHeight;
+		const screenHeight = window.innerHeight;
+		const scrolled = window.scrollY;
+		const threshold = height - screenHeight / 6;
+		const position = scrolled + screenHeight;
 
-			// Отслеживаем, где находится низ экрана относительно страницы:
-			const position = scrolled + screenHeight;
-
-			if (position >= threshold && skip !== total - 6) {
-				console.log("startFetch", skip);
-				fetchLoadmorePosts(skip + 6, limit);
-			}
-		}),
-		[skip]
-	);
+		if (position >= threshold && skip !== total - 6) {
+			fetchPosts(skip + 6, limit);
+		}
+	};
 
 	return <PostList posts={posts} loading={loading} error={error} />;
 };
@@ -52,9 +42,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
-		fetchPosts: () => fetchPosts(dispatch, shopService)(),
-		fetchLoadmorePosts: (skip, limit) =>
-			fetchLoadmorePosts(dispatch, shopService)(skip, limit),
+		fetchPosts: (skip, limit) => fetchPosts(dispatch, shopService)(skip, limit),
 	};
 };
 

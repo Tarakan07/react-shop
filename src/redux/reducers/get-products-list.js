@@ -1,11 +1,11 @@
 const getProductsList = (state, action) => {
 	const initialState = {
 		products: [],
-		skip: null,
-		limit: null,
+		skip: 0,
+		limit: 10,
+		total: 100,
 		loading: true,
 		error: null,
-		total: null,
 	};
 	if (state === undefined) {
 		return initialState;
@@ -17,22 +17,13 @@ const getProductsList = (state, action) => {
 				...initialState,
 				products: state.productsList.products,
 			};
+
 		case "FETCH_PRODUCTS_SUCCESS":
-			return {
-				products: action.payload,
-				skip: action.skip,
-				limit: action.limit,
-				total: action.total,
-				loading: false,
-				error: null,
-			};
-		case "FETCH_LOADMORE_PRODUCTS_SUCCESS":
+			const oldState =
+				action.skip !== 0 ? state.productsList.products.products : [];
 			return {
 				products: {
-					products: [
-						...state.productsList.products.products,
-						...action.payload.products,
-					],
+					products: [...oldState, ...action.payload.products],
 				},
 				skip: action.skip,
 				limit: action.limit,

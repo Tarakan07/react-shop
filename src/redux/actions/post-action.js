@@ -4,21 +4,13 @@ const postsRequested = () => {
 	};
 };
 
-const postsLoaded = (posts) => {
+const postsLoaded = (posts) => (skip, limit) => {
 	return {
 		type: "FETCH_POSTS_SUCCESS",
 		payload: posts,
-		skip: 0,
-		limit: 6,
-		total: 150,
-	};
-};
-const postsLoadmoreLoaded = (posts) => (skip, limit) => {
-	return {
-		type: "FETCH_LOADMORE_POSTS_SUCCESS",
-		payload: posts,
 		skip: skip,
 		limit: limit,
+		total: 150,
 	};
 };
 const postsFailure = (error) => {
@@ -28,22 +20,17 @@ const postsFailure = (error) => {
 	};
 };
 
-const fetchPosts = (dispatch, shopService) => () => {
-	dispatch(postsRequested());
-	shopService
-		.getPosts()
-		.then((data) => dispatch(postsLoaded(data)))
-		.catch((error) => dispatch(postsFailure(error)));
-};
-const fetchLoadmorePosts = (dispatch, shopService) => (skip, limit) => {
-	dispatch(postsRequested());
-	shopService
-		.getPosts(skip, limit)
-		.then((data) => {
-			console.log(data);
-			return data;
-		})
-		.then((data) => dispatch(postsLoadmoreLoaded(data)(skip, limit)))
-		.catch((error) => dispatch(postsFailure(error)));
-};
-export { fetchPosts, fetchLoadmorePosts };
+const fetchPosts =
+	(dispatch, shopService) =>
+	(skip = 0, limit = 6) => {
+		dispatch(postsRequested());
+		shopService
+			.getPosts(skip, limit)
+			.then((data) => {
+				console.log(data);
+				return data;
+			})
+			.then((data) => dispatch(postsLoaded(data)(skip, limit)))
+			.catch((error) => dispatch(postsFailure(error)));
+	};
+export default fetchPosts;
