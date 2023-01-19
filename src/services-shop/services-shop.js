@@ -6,24 +6,21 @@ export default class ShopService {
 	_api_posts = `${this._api_url}/posts`;
 	_api_comments = `${this._api_url}/comments/post`;
 	_api_quotes = `${this._api_url}/quotes`;
-	getProducts =
-		(skip, limit) =>
-		async (cat = "all") => {
-			console.log(skip, limit);
-			let res = undefined;
-			if (cat !== "all") {
-				res = await fetch(`${this._api_product}/category/${cat}`);
-			} else {
-				res = await fetch(
-					`${this._api_all_products}?skip=${skip}&limit=${limit}`
-				);
-			}
-			if (!res.ok) {
-				throw new Error("Error with get data");
-			}
+	getProducts = (skip, limit) => async (cat) => {
+		let res = undefined;
+		if (cat !== "all") {
+			res = await fetch(`${this._api_product}/category/${cat}`);
+		} else {
+			res = await fetch(
+				`${this._api_all_products}?skip=${skip}&limit=${limit}`
+			);
+		}
+		if (!res.ok) {
+			throw new Error("Error with get data");
+		}
 
-			return res.json();
-		};
+		return res.json();
+	};
 	getCategories = async () => {
 		const res = await fetch(this._api_categories);
 		if (!res.ok) {
@@ -60,8 +57,10 @@ export default class ShopService {
 
 	getQuotes = async (skip, limit) => {
 		const res = await fetch(`${this._api_quotes}?skip=${skip}&limit=${limit}`);
+
 		if (!res.ok) {
 			throw new Error("Error with get data");
 		}
+		return res.json();
 	};
 }

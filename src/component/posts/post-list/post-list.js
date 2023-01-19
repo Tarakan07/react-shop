@@ -4,7 +4,6 @@ import Spinner from "../../spinner";
 import PostItem from "../post-item";
 import "./post-list.css";
 const PostList = ({ posts, loading, error }) => {
-	console.log(posts);
 	if (loading && posts.length === 0) {
 		return <Spinner />;
 	}

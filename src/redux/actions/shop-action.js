@@ -22,7 +22,7 @@ const productsFailure = (error) => {
 
 const fetchProducts =
 	(dispatch, shopService) =>
-	(cat) =>
+	(cat = "all") =>
 	(skip = 0, limit = 10) => {
 		dispatch(productsRequested());
 

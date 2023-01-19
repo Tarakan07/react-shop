@@ -16,7 +16,7 @@ const GetPosts = ({
 }) => {
 	useEffect(() => {
 		fetchPosts();
-	}, [fetchPosts]);
+	}, []);
 
 	window.onscroll = (event) => {
 		const height = document.body.offsetHeight;

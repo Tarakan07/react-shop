@@ -26,10 +26,6 @@ const fetchPosts =
 		dispatch(postsRequested());
 		shopService
 			.getPosts(skip, limit)
-			.then((data) => {
-				console.log(data);
-				return data;
-			})
 			.then((data) => dispatch(postsLoaded(data)(skip, limit)))
 			.catch((error) => dispatch(postsFailure(error)));
 	};
