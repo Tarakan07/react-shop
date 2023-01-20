@@ -1,0 +1,8 @@
+.wrap-block-page {
+	margin-top: 150px;
+}
+.wrap-block-page > h1 {
+	font-size: 45px;
+	text-align: center;
+	margin-top: 50px;
+}

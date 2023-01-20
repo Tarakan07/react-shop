@@ -1,0 +1,18 @@
+.pagination {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	grid-column-gap: 10px;
+}
+.pagination span {
+	padding: 10px;
+	border: 1px solid #fff;
+	cursor: pointer;
+}
+.pagination span:hover {
+	transform: scale(1.2);
+}
+.pagination span.active {
+	background: #fff;
+	color: #000;
+}

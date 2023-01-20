@@ -1,6 +1,7 @@
 import React from "react";
 import PostComments from "../posts/post-comments";
 import "./css/post-page.css";
+import { withRouter } from "react-router";
 const PostPage = (props) => {
 	if (props.location.state !== undefined) {
 		const { id, title, tags, body } = props.location.state.post;

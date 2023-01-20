@@ -1,0 +1,8 @@
+.block-quote {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 300px 300px;
+	justify-content: center;
+	grid-column-gap: 20px;
+	grid-row-gap: 30px;
+}
