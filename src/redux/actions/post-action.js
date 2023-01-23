@@ -19,7 +19,7 @@ const postsFailure = (error) => {
 		payload: error,
 	};
 };
-
+// sd
 const fetchPosts =
 	(dispatch, shopService) =>
 	(skip = 0, limit = 6) => {
