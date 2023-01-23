@@ -5,7 +5,7 @@ import "./quotes-list.css";
 const QuotesList = ({ quotes }) => {
 	return (
 		<div className="block-quote">
-			{quotes.quotes.map((el) => {
+			{quotes.map((el) => {
 				return (
 					<div key={el.id} className="box-quote">
 						<QuotesItem quotes={el} />

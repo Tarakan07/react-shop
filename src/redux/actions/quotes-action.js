@@ -26,7 +26,7 @@ const fetchQuotes =
 		dispatch(quotesRequested());
 		shopService
 			.getQuotes(skip, limit)
-			.then((data) => dispatch(quotesLoaded(data)(skip, limit)))
+			.then(({ quotes }) => dispatch(quotesLoaded(quotes)(skip, limit)))
 			.catch((error) => dispatch(quotesFailure(error)));
 	};
 export default fetchQuotes;
