@@ -19,11 +19,9 @@ const getPostsList = (state, action) => {
 			};
 
 		case "FETCH_POSTS_SUCCESS":
-			const oldState = action.skip !== 0 ? state.postsList.posts.posts : [];
+			const oldState = action.skip !== 0 ? state.postsList.posts : [];
 			return {
-				posts: {
-					posts: [...oldState, ...action.payload.posts],
-				},
+				posts: [...oldState, ...action.payload],
 				skip: action.skip,
 				limit: action.limit,
 				total: action.total,

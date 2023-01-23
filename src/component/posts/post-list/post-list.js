@@ -11,7 +11,7 @@ const PostList = ({ posts, loading, error }) => {
 
 	return (
 		<div className="post-list">
-			{posts.posts.map((el) => {
+			{posts.map((el) => {
 				return (
 					<div key={el.id} className="box-post" num={el.id}>
 						<PostItem post={el} />

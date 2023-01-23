@@ -19,14 +19,14 @@ const postsFailure = (error) => {
 		payload: error,
 	};
 };
-// sd
+
 const fetchPosts =
 	(dispatch, shopService) =>
 	(skip = 0, limit = 6) => {
 		dispatch(postsRequested());
 		shopService
 			.getPosts(skip, limit)
-			.then((data) => dispatch(postsLoaded(data)(skip, limit)))
+			.then(({ posts }) => dispatch(postsLoaded(posts)(skip, limit)))
 			.catch((error) => dispatch(postsFailure(error)));
 	};
 export default fetchPosts;
