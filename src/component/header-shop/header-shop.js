@@ -19,7 +19,7 @@ const HeaderShop = () => {
 					<Link to="/posts/">Posts</Link>
 				</li>
 				<li>
-					<Link to="/quotes/">quotes</Link>
+					<Link to="/quotes/">Quotes</Link>
 				</li>
 			</ul>
 		</div>

@@ -19,7 +19,6 @@ const getQuotesList = (state, action) => {
 			};
 
 		case "FETCH_QUOTES_SUCCESS":
-			const oldState = action.skip !== 0 ? state.quotesList.quotes.quotes : [];
 			return {
 				quotes: action.payload,
 				skip: action.skip,

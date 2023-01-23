@@ -9,6 +9,10 @@
 	border: 1px solid #fff;
 	cursor: pointer;
 }
+.pagination span.no_active {
+	border: 1px solid #999;
+	color: #999;
+}
 .pagination span:hover {
 	transform: scale(1.2);
 }
