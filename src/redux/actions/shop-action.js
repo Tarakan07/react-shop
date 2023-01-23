@@ -4,10 +4,10 @@ const productsRequested = () => {
 	};
 };
 
-const productsLoaded = (product) => (skip, limit) => {
+const productsLoaded = (products) => (skip, limit) => {
 	return {
 		type: "FETCH_PRODUCTS_SUCCESS",
-		payload: product,
+		payload: products,
 		skip: skip,
 		limit: limit,
 		total: 100,
@@ -31,7 +31,7 @@ const fetchProducts =
 				skip,
 				limit
 			)(cat)
-			.then((data) => dispatch(productsLoaded(data)(skip, limit)))
+			.then(({ products }) => dispatch(productsLoaded(products)(skip, limit)))
 			.catch((error) => dispatch(productsFailure(error)));
 	};
 export default fetchProducts;

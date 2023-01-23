@@ -38,7 +38,6 @@ class GetProducts extends Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.filter !== this.props.match.params.filter) {
-			console.log("yes");
 			this.props.fetchProducts(this.props.match.params.filter);
 		}
 	}
@@ -51,16 +50,14 @@ class GetProducts extends Component {
 		});
 	};
 	visibleProducts = (products, valueSearch) => {
-		if (products.products !== undefined) {
-			const newProductsList = products.products.filter((el) => {
+		if (products !== undefined) {
+			const newProductsList = products.filter((el) => {
 				return el.brand.toLowerCase().indexOf(valueSearch.toLowerCase()) > -1;
 			});
 
-			return { products: newProductsList };
+			return newProductsList;
 		}
-		return {
-			products: products,
-		};
+		return products;
 	};
 	render() {
 		const { products, loading, error } = this.props;
@@ -69,7 +66,7 @@ class GetProducts extends Component {
 			this.state.category === "all" ? "All products" : this.state.category;
 		const showLoadMore =
 			this.props.skip !== this.props.total - 10
-				? visibleProducts.products.length > 9
+				? visibleProducts.length > 9
 					? true
 					: false
 				: false;

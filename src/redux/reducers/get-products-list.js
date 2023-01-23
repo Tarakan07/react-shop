@@ -19,12 +19,9 @@ const getProductsList = (state, action) => {
 			};
 
 		case "FETCH_PRODUCTS_SUCCESS":
-			const oldState =
-				action.skip !== 0 ? state.productsList.products.products : [];
+			const oldState = action.skip !== 0 ? state.productsList.products : [];
 			return {
-				products: {
-					products: [...oldState, ...action.payload.products],
-				},
+				products: [...oldState, ...action.payload],
 				skip: action.skip,
 				limit: action.limit,
 				total: action.total,
