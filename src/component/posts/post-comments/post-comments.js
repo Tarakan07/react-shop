@@ -23,10 +23,10 @@ const PostComments = ({
 	if (error) {
 		return <ErrorIndicator />;
 	}
-	return comments.comments.map((el) => {
+	return comments.map((el) => {
 		return (
 			<div key={el.id} className="box-comment">
-				<span>name: {el.user.username}</span>
+				<span>Name's: {el.user.username}</span>
 				<p>{el.body}</p>
 			</div>
 		);

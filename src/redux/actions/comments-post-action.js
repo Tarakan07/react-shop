@@ -22,7 +22,7 @@ const fetchCommentsPost = (dispatch, shopService) => (id) => {
 	dispatch(commentsRequested());
 	shopService
 		.getCommentPost(id)
-		.then((data) => dispatch(commentsLoaded(data)))
+		.then(({ comments }) => dispatch(commentsLoaded(comments)))
 		.catch((error) => dispatch(commentsFailure(error)));
 };
 
