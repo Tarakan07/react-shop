@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import BlockDescription from "./block-description";
-const ProductBoxDescription = ({ descriptionProduct, history, match }) => {
+const ProductBoxDescription = ({
+	descriptionProduct,
+	history,
+	match,
+	addedToCart,
+}) => {
 	const [descr, setDescr] = useState({
 		titleBtn: "Show description",
 		show: false,
@@ -31,7 +36,9 @@ const ProductBoxDescription = ({ descriptionProduct, history, match }) => {
 				>
 					{descr.titleBtn}
 				</button>
-				<button className="add-to-cart">Add to cart</button>
+				<button onClick={addedToCart} className="add-to-cart">
+					Add to cart
+				</button>
 			</div>
 			<Switch>
 				<Route

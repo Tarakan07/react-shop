@@ -4,6 +4,7 @@ import ProductsPage from "./products-page";
 import PostsPage from "./posts-page";
 import PostPage from "./post-page";
 import QuotesPage from "./quotes-page";
+import CartPage from "./cart-page";
 export {
 	MainPageShop,
 	ProductPage,
@@ -11,4 +12,5 @@ export {
 	PostsPage,
 	PostPage,
 	QuotesPage,
+	CartPage,
 };

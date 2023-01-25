@@ -4,6 +4,11 @@ import fetchProductsByID from "./product-action";
 import fetchPosts from "./post-action";
 import fetchCommentsPost from "./comments-post-action";
 import fetchQuotes from "./quotes-action";
+import {
+	productAddedToCart,
+	productRemovedFromCart,
+	allProductsRemovedFromCart,
+} from "./cart-action";
 export {
 	fetchProducts,
 	fetchCategories,
@@ -11,4 +16,7 @@ export {
 	fetchPosts,
 	fetchCommentsPost,
 	fetchQuotes,
+	productAddedToCart,
+	productRemovedFromCart,
+	allProductsRemovedFromCart,
 };

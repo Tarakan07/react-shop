@@ -21,6 +21,9 @@ const HeaderShop = () => {
 				<li>
 					<Link to="/quotes/">Quotes</Link>
 				</li>
+				<li>
+					<Link to="/cart">Cart</Link>
+				</li>
 			</ul>
 		</div>
 	);

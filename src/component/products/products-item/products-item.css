@@ -8,7 +8,9 @@
 	display: block;
 }
 .box-products a {
+	height: 100%;
 	text-decoration: none;
+	display: grid;
 }
 .box-products .image {
 	overflow: hidden;
@@ -60,4 +62,21 @@
 	border: 1px solid #fff;
 	border-radius: 5px;
 	padding: 4px;
+}
+
+.box-products__add-to-cart {
+	padding: 10px;
+	align-self: end;
+}
+.box-products__add-to-cart button {
+	background: transparent;
+	border: 1px solid #fff;
+	padding: 5px 10px;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+.box-products__add-to-cart button:hover {
+	background: #fff;
+	color: #000;
 }

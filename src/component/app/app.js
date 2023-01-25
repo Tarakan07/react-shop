@@ -9,6 +9,7 @@ import {
 	PostsPage,
 	PostPage,
 	QuotesPage,
+	CartPage,
 } from "../pages";
 import "./app.css";
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
 				<Route path="/posts/" component={PostsPage} />
 				<Route path="/quotes/:page" component={QuotesPage} />
 				<Route path="/quotes/" component={QuotesPage} />
+				<Route path="/cart" component={CartPage} />
 			</Switch>
 			<FooterShop />
 		</div>

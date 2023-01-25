@@ -8,28 +8,41 @@ import { WithShopService } from "../hoc";
 import ProductBoxDescription from "../products/product-box-description";
 import ProductBoxImages from "../products/product-box-images";
 import compose from "../../utils/compose";
+import { productAddedToCart } from "../../redux/actions";
 import "./css/product-page.css";
 class ProductPage extends Component {
 	componentDidMount() {
-		this.props.fetchProductsByID(this.props.match.params.id);
+		this.props.fetchProductsByID(Number(this.props.match.params.id));
 	}
 
+	addedToCart = () => {
+		this.props.productAddedToCart(Number(this.props.match.params.id));
+	};
 	render() {
 		const { product, loading, error } = this.props;
 		const images = product.images;
 		if (loading) return <Spinner />;
 		if (error) return <ErrorIndicator />;
-		return <BlockProduct images={images} product={product} />;
+		return (
+			<BlockProduct
+				images={images}
+				product={product}
+				addedToCart={this.addedToCart}
+			/>
+		);
 	}
 }
 
-const BlockProduct = ({ images, product }) => {
+const BlockProduct = ({ images, product, addedToCart }) => {
 	return (
 		<section className="section-product">
 			<h1>{`${product.title},(${product.category})`}</h1>
 			<div className="wrap-product-block">
 				<ProductBoxImages images={images} />
-				<ProductBoxDescription descriptionProduct={product} />
+				<ProductBoxDescription
+					descriptionProduct={product}
+					addedToCart={addedToCart}
+				/>
 			</div>
 		</section>
 	);
@@ -42,6 +55,7 @@ const mapStateToProps = ({ onceProduct: { product, loading, error } }) => {
 const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
 		fetchProductsByID: (id) => fetchProductsByID(dispatch, shopService)(id),
+		productAddedToCart: (id) => dispatch(productAddedToCart(id)),
 	};
 };
 export default compose(

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./products-item.css";
+import GetCart from "../../cart/get-cart";
 const ProductsItem = ({ product }) => {
 	const { id, brand, category, price, thumbnail, title, rating } = product;
 
@@ -27,8 +28,11 @@ const ProductsItem = ({ product }) => {
 			<div className="box-products__info">
 				<span>{category}</span>, <span> {brand}</span>
 			</div>
+			<div className="box-products__add-to-cart">
+				<button>Add to Cart</button>
+			</div>
 		</Link>
 	);
 };
 
-export default ProductsItem;
+export default GetCart(ProductsItem);

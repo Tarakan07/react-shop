@@ -3,6 +3,7 @@ import "./products-list.css";
 import ProductsItem from "../products-item";
 import Spinner from "../../spinner";
 import ErrorIndicator from "../../error-indicator";
+
 const ProductsList = ({ products, loading, error }) => {
 	if (loading && products.length < 1) {
 		return <Spinner />;
