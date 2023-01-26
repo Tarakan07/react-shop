@@ -1,10 +1,10 @@
 import React from "react";
+import GetCart from "..";
 import "./cart-list-page.css";
- 
-const CartListPage = ({
- 
-}) => {
+
+const CartListPage = (props) => {
+	console.log(props);
 	return <span>cartlistpage</span>;
 };
 
-export default CartListPage;
+export default GetCart(CartListPage);

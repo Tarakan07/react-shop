@@ -3,14 +3,14 @@
 
 	max-width: 250px;
 	border-radius: 10px;
+	height: 100%;
+	display: grid;
 }
 .box-products * {
 	display: block;
 }
 .box-products a {
-	height: 100%;
 	text-decoration: none;
-	display: grid;
 }
 .box-products .image {
 	overflow: hidden;

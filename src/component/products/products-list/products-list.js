@@ -4,7 +4,7 @@ import ProductsItem from "../products-item";
 import Spinner from "../../spinner";
 import ErrorIndicator from "../../error-indicator";
 
-const ProductsList = ({ products, loading, error }) => {
+const ProductsList = ({ products, loading, error, productAddedToCart }) => {
 	if (loading && products.length < 1) {
 		return <Spinner />;
 	}
@@ -19,7 +19,10 @@ const ProductsList = ({ products, loading, error }) => {
 			{products.map((item) => {
 				return (
 					<div key={item.id} className="box-products">
-						<ProductsItem product={item} />
+						<ProductsItem
+							product={item}
+							productAddedToCart={productAddedToCart}
+						/>
 					</div>
 				);
 			})}

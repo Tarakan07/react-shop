@@ -1,26 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./products-item.css";
-import GetCart from "../../cart/get-cart";
-const ProductsItem = ({ product }) => {
+const ProductsItem = ({ product, productAddedToCart }) => {
 	const { id, brand, category, price, thumbnail, title, rating } = product;
 
 	return (
-		<Link
-			to={{
-				pathname: `/product/${id}`,
-				state: {
-					product,
-				},
-			}}
-		>
-			<div className="image">
-				<img src={thumbnail} alt="" />
-				<div>
-					<span>Rating:</span>
-					<span className="rating">{rating}</span>
+		<React.Fragment>
+			<Link to={`/product/${id}`}>
+				<div className="image">
+					<img src={thumbnail} alt="" />
+					<div>
+						<span>Rating:</span>
+						<span className="rating">{rating}</span>
+					</div>
 				</div>
-			</div>
+			</Link>
 			<div className="box-products__descr">
 				<p className="title">{title}</p>
 				<span className="price">{price}$</span>
@@ -29,10 +23,12 @@ const ProductsItem = ({ product }) => {
 				<span>{category}</span>, <span> {brand}</span>
 			</div>
 			<div className="box-products__add-to-cart">
-				<button>Add to Cart</button>
+				<button onClick={() => productAddedToCart(Number(id))}>
+					Add to Cart
+				</button>
 			</div>
-		</Link>
+		</React.Fragment>
 	);
 };
 
-export default GetCart(ProductsItem);
+export default ProductsItem;

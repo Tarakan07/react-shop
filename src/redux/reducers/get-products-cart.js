@@ -37,15 +37,16 @@ const getProductsCart = (state, action) => {
 	const updateOrder = (state, productId, idx) => {
 		const {
 			productsList: { products },
+			onceProduct,
 			productsCart: { productsCart },
 		} = state;
-		const getProduct = () => {
-			console.log(state.productsList.products, state.onceProduct.product);
-			return state.productsList.products.length > 0
-				? state.productsList.products.find((product) => product.id == productId)
-				: state.onceProduct.product.find((product) => product.id == productId);
+
+		const getProductItem = (products, onceProduct) => {
+			return products.length > 0
+				? products.find((product) => product.id == productId)
+				: onceProduct.product.find((product) => product.id == productId);
 		};
-		const product = getProduct;
+		const product = getProductItem(products, onceProduct);
 
 		const itemIndex = productsCart.findIndex(
 			(product) => product.id === productId
@@ -61,7 +62,6 @@ const getProductsCart = (state, action) => {
 	if (state === undefined) {
 		return initialState;
 	}
-	console.log(state);
 	switch (action.type) {
 		case "PRODUCT_ADDED_TO_CART":
 			return updateOrder(state, action.payload, 1);

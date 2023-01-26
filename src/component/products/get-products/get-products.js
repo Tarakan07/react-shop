@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import ProductsList from "../products-list";
-import { fetchProducts } from "../../../redux/actions";
+import { fetchProducts, productAddedToCart } from "../../../redux/actions";
 import { WithShopService } from "../../hoc";
 import ProductsFilter from "../products-filter";
 import { withRouter } from "react-router";
@@ -87,6 +87,7 @@ class GetProducts extends Component {
 						products={visibleProducts}
 						loading={loading}
 						error={error}
+						productAddedToCart={(id) => this.props.productAddedToCart(id)}
 					/>
 					<LoadmoreProducts
 						loadmoreProducts={() => this.setCountProducts()}
@@ -102,6 +103,7 @@ class GetProducts extends Component {
 					products={visibleProducts}
 					loading={loading}
 					error={error}
+					productAddedToCart={(id) => this.props.productAddedToCart(id)}
 				/>
 				<LoadmoreProducts
 					loadmoreProducts={this.setCountProducts}
@@ -122,6 +124,7 @@ const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
 		fetchProducts: (cat, skip, limit) =>
 			fetchProducts(dispatch, shopService)(cat)(skip, limit),
+		productAddedToCart: (id) => dispatch(productAddedToCart(id)),
 	};
 };
 

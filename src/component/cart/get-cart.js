@@ -7,30 +7,46 @@ import {
 	allProductsRemovedFromCart,
 } from "../../redux/actions";
 
-const GetCart =
-	({ productsCart, orderTotal }) =>
-	(View) => {
-		return (props) => {
-			return (
-				<View
-					{...props}
-					productsCart={productsCart}
-					orderTotal={orderTotal}
-					productAddedToCart={productAddedToCart}
-					productRemovedFromCart={productRemovedFromCart}
-					allProductsRemovedFromCart={allProductsRemovedFromCart}
-				/>
-			);
-		};
-	};
+// const GetCart =
+// 	({
+// 		productsCart,
+// 		orderTotal,
+// 		productAddedToCart,
+// 		productRemovedFromCart,
+// 		allProductsRemovedFromCart,
+// 	}) =>
+// 	(View) => {
+// 		return (props) => {
+// 			return (
+// 				<View
+// 					{...props}
+// 					productsCart={productsCart}
+// 					orderTotal={orderTotal}
+// 					productAddedToCart={productAddedToCart}
+// 					productRemovedFromCart={productRemovedFromCart}
+// 					allProductsRemovedFromCart={allProductsRemovedFromCart}
+// 				/>
+// 			);
+// 		};
+// 	};
 
+// const mapStateToProps = ({ productsCart, orderTotal }) => {
+// 	return { productsCart, orderTotal };
+// };
+// const mapDispatchToProps = (dispatch) => {
+// 	return bindActionCreators(
+// 		{ productAddedToCart, productRemovedFromCart, allProductsRemovedFromCart },
+// 		dispatch
+// 	);
+// };
+// export default compose(connect(mapStateToProps, mapDispatchToProps))(GetCart);
 const mapStateToProps = ({ productsCart, orderTotal }) => {
 	return { productsCart, orderTotal };
 };
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators(
-		{ productAddedToCart, productRemovedFromCart, allProductsRemovedFromCart },
-		dispatch
-	);
+
+const GetCart = (View) => {
+	return (props) => {
+		return <View {...props} />;
+	};
 };
-export default compose(connect(mapStateToProps, mapDispatchToProps))(GetCart);
+export default GetCart;
