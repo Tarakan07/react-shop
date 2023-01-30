@@ -22,6 +22,7 @@ const CartListPage = (props) => {
 				<div className="header-list">
 					<div className="box-list">
 						<div className="number">Number</div>
+						<div className="image">Image</div>
 						<div className="title">Title</div>
 						<div className="count">Count</div>
 						<div className="total">Total</div>

@@ -7,10 +7,14 @@ const CartItemPage = ({
 	productRemovedFromCart,
 	allProductsRemovedFromCart,
 }) => {
-	const { id, title, count, price } = item;
+	const { id, title, thumbnail, count, price } = item;
+	console.log(thumbnail);
 	return (
 		<div className="box-list">
 			<div className="number">{idx}</div>
+			<div className="image">
+				<img src={thumbnail} alt="" />
+			</div>
 			<div className="title">{title}</div>
 			<div className="count">{count}</div>
 			<div className="total">{price}</div>

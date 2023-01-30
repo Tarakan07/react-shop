@@ -4,7 +4,7 @@
 }
 .box-list {
 	display: grid;
-	grid-template-columns: 1fr 4fr 1fr 1fr 1.5fr;
+	grid-template-columns: 90px 150px 4fr 1fr 1fr 1.5fr;
 	border: 1px solid #fff;
 }
 .box-list > div {
@@ -20,11 +20,14 @@
 	display: flex;
 	justify-content: space-around;
 }
-.config-item > div {
+.box-list > div.image img {
+	width: 130px;
+}
+.box-list .config-item > div {
 	cursor: pointer;
 	transform: scale(1.1);
 }
-.order-info {
+.table-page-list .order-info {
 	margin-top: 30px;
 	margin-right: 15px;
 	width: fit-content;

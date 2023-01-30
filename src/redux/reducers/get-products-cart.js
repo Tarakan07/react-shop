@@ -22,15 +22,18 @@ const getProductsCart = (state, action) => {
 		];
 	};
 	const updateCartItem = (product, item = {}, idx) => {
+		console.log(product);
 		const {
 			id = product.id,
 			count = 0,
+			thumbnail = product.thumbnail,
 			title = product.title,
 			price = 0,
 		} = item;
 		return {
 			id,
 			title,
+			thumbnail,
 			count: count + idx,
 			price: price + idx * product.price,
 		};
