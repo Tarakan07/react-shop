@@ -2,6 +2,7 @@ const getProductsCart = (state, action) => {
 	const initialState = {
 		cartItems: [],
 		orderPrice: 0,
+		orderCount: 0,
 	};
 
 	const updateCartItems = (cartItems, item, itemIndex) => {
@@ -25,13 +26,13 @@ const getProductsCart = (state, action) => {
 			id = product.id,
 			count = 0,
 			title = product.title,
-			total = 0,
+			price = 0,
 		} = item;
 		return {
 			id,
 			title,
 			count: count + idx,
-			total: total + idx * product.price,
+			price: price + idx * product.price,
 		};
 	};
 	const updateOrder = (state, productId, idx) => {
@@ -41,12 +42,15 @@ const getProductsCart = (state, action) => {
 			productsCart: { cartItems },
 		} = state;
 
-		const getProductItem = (products, onceProduct) => {
+		const getProductItem = (products = {}, onceProduct = {}) => {
 			return products.length > 0
 				? products.find((product) => product.id == productId)
 				: onceProduct.product.find((product) => product.id == productId);
 		};
-		const product = getProductItem(products, onceProduct);
+		const product =
+			getProductItem(products, onceProduct) === undefined
+				? getProductItem(cartItems)
+				: getProductItem(products, onceProduct);
 
 		const itemIndex = cartItems.findIndex(
 			(product) => product.id === productId
@@ -54,6 +58,7 @@ const getProductsCart = (state, action) => {
 		const item = cartItems[itemIndex];
 		const newItem = updateCartItem(product, item, idx);
 		return {
+			orderCount: state.productsCart.orderCount + idx,
 			orderPrice: state.productsCart.orderPrice + idx * product.price,
 			cartItems: updateCartItems(cartItems, newItem, itemIndex),
 		};

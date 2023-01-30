@@ -5,7 +5,7 @@ import "./cart-list-page.css";
 
 const CartListPage = (props) => {
 	const {
-		productsCart: { cartItems, orderPrice },
+		productsCart: { cartItems, orderPrice, orderCount },
 		productAddedToCart,
 		productRemovedFromCart,
 		allProductsRemovedFromCart,
@@ -42,8 +42,8 @@ const CartListPage = (props) => {
 						);
 					})}
 				</div>
-
-				<div className="orderTotal">Basket value: {orderPrice}</div>
+				<div className="order-info">Cart count: {orderCount}</div>
+				<div className="order-info">Cart price value: {orderPrice}</div>
 			</div>
 		</div>
 	);

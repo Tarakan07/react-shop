@@ -24,7 +24,7 @@
 	cursor: pointer;
 	transform: scale(1.1);
 }
-.orderTotal {
+.order-info {
 	margin-top: 30px;
 	margin-right: 15px;
 	width: fit-content;

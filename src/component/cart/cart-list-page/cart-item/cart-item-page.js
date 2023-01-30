@@ -7,13 +7,13 @@ const CartItemPage = ({
 	productRemovedFromCart,
 	allProductsRemovedFromCart,
 }) => {
-	const { id, title, count, total } = item;
+	const { id, title, count, price } = item;
 	return (
 		<div className="box-list">
 			<div className="number">{idx}</div>
 			<div className="title">{title}</div>
 			<div className="count">{count}</div>
-			<div className="total">{total}</div>
+			<div className="total">{price}</div>
 			<div className="config-item">
 				<div className="add" onClick={() => productAddedToCart(id)}>
 					<svg
