@@ -1,5 +1,5 @@
 import React from "react";
-import CartListPage from "../cart/cart-list-page";
+import CartListPage from "../cart/cart-list-page/cart-list";
 const CartPage = () => {
 	return (
 		<div className="cart-block wrap-block-page">

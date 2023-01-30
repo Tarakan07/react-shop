@@ -1,23 +1,23 @@
 const getProductsCart = (state, action) => {
 	const initialState = {
-		productsCart: [],
+		cartItems: [],
 		orderPrice: 0,
 	};
 
-	const updateCartItems = (productsCart, item, itemIndex) => {
+	const updateCartItems = (cartItems, item, itemIndex) => {
 		if (item.count === 0) {
 			return [
-				...productsCart.slice(0, itemIndex),
-				...productsCart.slice(itemIndex + 1),
+				...cartItems.slice(0, itemIndex),
+				...cartItems.slice(itemIndex + 1),
 			];
 		}
 		if (itemIndex === -1) {
-			return [...productsCart, item];
+			return [...cartItems, item];
 		}
 		return [
-			...productsCart.slice(0, itemIndex),
+			...cartItems.slice(0, itemIndex),
 			item,
-			...productsCart.slice(itemIndex + 1),
+			...cartItems.slice(itemIndex + 1),
 		];
 	};
 	const updateCartItem = (product, item = {}, idx) => {
@@ -38,7 +38,7 @@ const getProductsCart = (state, action) => {
 		const {
 			productsList: { products },
 			onceProduct,
-			productsCart: { productsCart },
+			productsCart: { cartItems },
 		} = state;
 
 		const getProductItem = (products, onceProduct) => {
@@ -48,14 +48,14 @@ const getProductsCart = (state, action) => {
 		};
 		const product = getProductItem(products, onceProduct);
 
-		const itemIndex = productsCart.findIndex(
+		const itemIndex = cartItems.findIndex(
 			(product) => product.id === productId
 		);
-		const item = productsCart[itemIndex];
+		const item = cartItems[itemIndex];
 		const newItem = updateCartItem(product, item, idx);
 		return {
 			orderPrice: state.productsCart.orderPrice + idx * product.price,
-			productsCart: updateCartItems(productsCart, newItem, itemIndex),
+			cartItems: updateCartItems(cartItems, newItem, itemIndex),
 		};
 	};
 
@@ -69,7 +69,7 @@ const getProductsCart = (state, action) => {
 		case "PRODUCT_REMOVED_FROM_CART":
 			return updateOrder(state, action.payload, -1);
 		case "ALL_PRODUCTS_REMOVED_FROM_CART":
-			const item = state.productsCart.find(
+			const item = state.productsCart.cartItems.find(
 				(product) => product.id === action.payload
 			);
 			return updateOrder(state, action.payload, -item.count);
