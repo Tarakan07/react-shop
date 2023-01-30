@@ -44,7 +44,7 @@ const CartListPage = (props) => {
 					})}
 				</div>
 				<div className="order-info">Cart count: {orderCount}</div>
-				<div className="order-info">Cart price value: {orderPrice}</div>
+				<div className="order-info">Cart price value: {orderPrice}$</div>
 			</div>
 		</div>
 	);

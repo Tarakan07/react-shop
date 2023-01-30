@@ -7,8 +7,8 @@ import {
 } from "../../redux/actions";
 
 const GetCart = (View) => connect(mapStateToProps, mapDispatchToProps)(View);
-const mapStateToProps = ({ productsCart, orderTotal }) => {
-	return { productsCart, orderTotal };
+const mapStateToProps = ({ productsCart }) => {
+	return { productsCart };
 };
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(

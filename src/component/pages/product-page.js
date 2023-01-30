@@ -14,26 +14,31 @@ class ProductPage extends Component {
 	componentDidMount() {
 		this.props.fetchProductsByID(Number(this.props.match.params.id));
 	}
-
+	componentDidUpdate() {}
 	addedToCart = () => {
 		this.props.productAddedToCart(Number(this.props.match.params.id));
 	};
 	render() {
 		const { product, loading, error } = this.props;
 		const images = product.images;
+		const show =
+			this.props.cartItems.find((el) => el.id === product.id) !== undefined
+				? "hasCart"
+				: "";
 		if (loading) return <Spinner />;
 		if (error) return <ErrorIndicator />;
 		return (
 			<BlockProduct
 				images={images}
 				product={product}
+				hasInCart={show}
 				addedToCart={this.addedToCart}
 			/>
 		);
 	}
 }
 
-const BlockProduct = ({ images, product, addedToCart }) => {
+const BlockProduct = ({ images, product, addedToCart, hasInCart }) => {
 	return (
 		<section className="section-product">
 			<h1>{`${product.title},(${product.category})`}</h1>
@@ -42,14 +47,18 @@ const BlockProduct = ({ images, product, addedToCart }) => {
 				<ProductBoxDescription
 					descriptionProduct={product}
 					addedToCart={addedToCart}
+					hasInCart={hasInCart}
 				/>
 			</div>
 		</section>
 	);
 };
 
-const mapStateToProps = ({ onceProduct: { product, loading, error } }) => {
-	return { product, loading, error };
+const mapStateToProps = ({
+	onceProduct: { product, loading, error },
+	productsCart: { cartItems },
+}) => {
+	return { product, cartItems, loading, error };
 };
 
 const mapDispatchToProps = (dispatch, { shopService }) => {

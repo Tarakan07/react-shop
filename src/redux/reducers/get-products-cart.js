@@ -22,7 +22,6 @@ const getProductsCart = (state, action) => {
 		];
 	};
 	const updateCartItem = (product, item = {}, idx) => {
-		console.log(product);
 		const {
 			id = product.id,
 			count = 0,
@@ -48,7 +47,10 @@ const getProductsCart = (state, action) => {
 		const getProductItem = (products = {}, onceProduct = {}) => {
 			return products.length > 0
 				? products.find((product) => product.id == productId)
-				: onceProduct.product.find((product) => product.id == productId);
+				: onceProduct.product.id === productId
+				? onceProduct.product
+				: [];
+			// onceProduct.product.find((product) => product.id == productId);
 		};
 		const product =
 			getProductItem(products, onceProduct) === undefined

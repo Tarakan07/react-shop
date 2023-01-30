@@ -7,6 +7,7 @@ const ProductBoxDescription = ({
 	history,
 	match,
 	addedToCart,
+	hasInCart,
 }) => {
 	const [descr, setDescr] = useState({
 		titleBtn: "Show description",
@@ -36,7 +37,7 @@ const ProductBoxDescription = ({
 				>
 					{descr.titleBtn}
 				</button>
-				<button onClick={addedToCart} className="add-to-cart">
+				<button onClick={addedToCart} className={`add-to-cart ${hasInCart}`}>
 					Add to cart
 				</button>
 			</div>

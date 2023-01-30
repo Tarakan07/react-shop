@@ -17,6 +17,10 @@
 .product-box-description {
 	min-width: 500px;
 }
+.product-box-description .add-to-cart.hasCart {
+	background: #fff;
+	color: #000;
+}
 .product-box-description .product-box__buttons {
 	display: flex;
 	justify-content: space-between;

@@ -34,7 +34,6 @@ const GetPosts = ({
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	const {
 		postsList: { posts, loading, error, skip, limit, total },
 	} = state;
