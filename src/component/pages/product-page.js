@@ -21,7 +21,7 @@ class ProductPage extends Component {
 	render() {
 		const { product, loading, error } = this.props;
 		const images = product.images;
-		const show =
+		const hasInCart =
 			this.props.cartItems.find((el) => el.id === product.id) !== undefined
 				? "hasCart"
 				: "";
@@ -31,7 +31,7 @@ class ProductPage extends Component {
 			<BlockProduct
 				images={images}
 				product={product}
-				hasInCart={show}
+				hasInCart={hasInCart}
 				addedToCart={this.addedToCart}
 			/>
 		);

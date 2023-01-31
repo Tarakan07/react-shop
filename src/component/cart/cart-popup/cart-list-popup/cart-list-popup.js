@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import GetCart from "../../get-cart";
 import CartItemPopup from "../cart-item-popup";
 import "./cart-list-popup.css";
@@ -11,6 +12,7 @@ const CartListPopup = ({
 	allProductsRemovedFromCart,
 }) => {
 	const setClassList = showPopup ? "active" : "";
+	const setClassInfoCart = orderCount > 0 ? "active" : "";
 	return (
 		<div className={`cart_popup_list-block ${setClassList}`}>
 			<div className="cart_header-popup">
@@ -43,6 +45,13 @@ const CartListPopup = ({
 								/>
 							);
 					  })}
+			</div>
+			<div className={`cart_footer-popup ${setClassInfoCart}`}>
+				<div className="info-cart">
+					<span>Count cart:{orderCount}</span>
+					<span>Total price:{orderPrice}</span>
+				</div>
+				<Link to="/cart">Go to cart</Link>
 			</div>
 		</div>
 	);

@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GetCart from "../../cart/get-cart";
 import "./products-item.css";
-const ProductsItem = ({ product, productAddedToCart }) => {
+const ProductsItem = ({
+	product,
+	productAddedToCart,
+	productsCart: { cartItems },
+}) => {
 	const { id, brand, category, price, thumbnail, title, rating } = product;
-
+	const hasInCart =
+		cartItems.find((el) => el.id === id) !== undefined ? "hasCart" : "";
 	return (
 		<React.Fragment>
 			<Link to={`/product/${id}`}>
@@ -23,7 +29,10 @@ const ProductsItem = ({ product, productAddedToCart }) => {
 				<span>{category}</span>, <span> {brand}</span>
 			</div>
 			<div className="box-products__add-to-cart">
-				<button onClick={() => productAddedToCart(Number(id))}>
+				<button
+					className={hasInCart}
+					onClick={() => productAddedToCart(Number(id))}
+				>
 					Add to Cart
 				</button>
 			</div>
@@ -31,4 +40,4 @@ const ProductsItem = ({ product, productAddedToCart }) => {
 	);
 };
 
-export default ProductsItem;
+export default GetCart(ProductsItem);

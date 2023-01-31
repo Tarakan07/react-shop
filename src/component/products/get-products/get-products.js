@@ -71,6 +71,7 @@ class GetProducts extends Component {
 					: false
 				: false;
 
+		console.log(visibleProducts);
 		if (this.props.showProductFilter) {
 			return (
 				<React.Fragment>
@@ -87,7 +88,6 @@ class GetProducts extends Component {
 						products={visibleProducts}
 						loading={loading}
 						error={error}
-						productAddedToCart={(id) => this.props.productAddedToCart(id)}
 					/>
 					<LoadmoreProducts
 						loadmoreProducts={() => this.setCountProducts()}
@@ -103,7 +103,6 @@ class GetProducts extends Component {
 					products={visibleProducts}
 					loading={loading}
 					error={error}
-					productAddedToCart={(id) => this.props.productAddedToCart(id)}
 				/>
 				<LoadmoreProducts
 					loadmoreProducts={this.setCountProducts}
@@ -124,7 +123,6 @@ const mapDispatchToProps = (dispatch, { shopService }) => {
 	return {
 		fetchProducts: (cat, skip, limit) =>
 			fetchProducts(dispatch, shopService)(cat)(skip, limit),
-		productAddedToCart: (id) => dispatch(productAddedToCart(id)),
 	};
 };
 

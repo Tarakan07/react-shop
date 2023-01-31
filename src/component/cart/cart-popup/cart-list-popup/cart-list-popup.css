@@ -59,3 +59,31 @@
 .cart_body-box .box_info-config div {
 	cursor: pointer;
 }
+
+.cart_footer-popup {
+	display: none;
+	margin-top: 50px;
+
+	align-items: center;
+	justify-content: space-between;
+}
+.cart_footer-popup.active {
+	display: flex;
+}
+
+.cart_footer-popup a {
+	width: fit-content;
+	overflow: hidden;
+}
+.cart_footer-popup a:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	border-bottom: 1px solid #fff;
+	left: -100%;
+	transition: 0.5s;
+	bottom: 0;
+}
+.cart_footer-popup a:hover:before {
+	left: 0;
+}
