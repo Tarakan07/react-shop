@@ -50,7 +50,6 @@ const getProductsCart = (state, action) => {
 				: onceProduct.product.id === productId
 				? onceProduct.product
 				: [];
-			// onceProduct.product.find((product) => product.id == productId);
 		};
 		const product =
 			getProductItem(products, onceProduct) === undefined

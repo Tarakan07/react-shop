@@ -1,18 +1,15 @@
 const onceProduct = (state, action) => {
+	const initialState = {
+		product: [],
+		loading: true,
+		error: null,
+	};
 	if (state === undefined) {
-		return {
-			product: [],
-			loading: true,
-			error: null,
-		};
+		return initialState;
 	}
 	switch (action.type) {
 		case "FETCH_PRODUCT_REQUEST":
-			return {
-				product: [],
-				loading: true,
-				error: null,
-			};
+			return initialState;
 		case "FETCH_PRODUCT_SUCCESS":
 			return {
 				product: action.payload,

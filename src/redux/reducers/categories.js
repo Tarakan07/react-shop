@@ -1,18 +1,15 @@
 const categories = (state, action) => {
+	const initialState = {
+		categories: [],
+		loading: true,
+		error: null,
+	};
 	if (state === undefined) {
-		return {
-			categories: [],
-			loading: true,
-			error: null,
-		};
+		return initialState;
 	}
 	switch (action.type) {
 		case "FETCH_CATEGORIES_REQUEST":
-			return {
-				categories: [],
-				loading: true,
-				error: null,
-			};
+			return initialState;
 		case "FETCH_CATEGORIES_SUCCESS":
 			return {
 				categories: action.payload,

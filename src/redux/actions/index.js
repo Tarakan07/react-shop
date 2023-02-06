@@ -9,6 +9,7 @@ import {
 	productRemovedFromCart,
 	allProductsRemovedFromCart,
 } from "./cart-action";
+import fetchSearchProducts from "./search_product-action";
 export {
 	fetchProducts,
 	fetchCategories,
@@ -19,4 +20,5 @@ export {
 	productAddedToCart,
 	productRemovedFromCart,
 	allProductsRemovedFromCart,
+	fetchSearchProducts,
 };

@@ -70,8 +70,6 @@ class GetProducts extends Component {
 					? true
 					: false
 				: false;
-
-		console.log(visibleProducts);
 		if (this.props.showProductFilter) {
 			return (
 				<React.Fragment>

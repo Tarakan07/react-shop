@@ -5,6 +5,7 @@ import getPostsList from "./get-posts-list";
 import getPostComments from "./get-post-comments";
 import getQuotesList from "./get-quotes-list";
 import getProductsCart from "./get-products-cart";
+import getSearchedProducts from "./get-searched-products";
 const reducer = (state, action) => {
 	return {
 		productsList: getProductsList(state, action),
@@ -14,6 +15,7 @@ const reducer = (state, action) => {
 		postComments: getPostComments(state, action),
 		quotesList: getQuotesList(state, action),
 		productsCart: getProductsCart(state, action),
+		searchedProducts: getSearchedProducts(state, action),
 	};
 };
 

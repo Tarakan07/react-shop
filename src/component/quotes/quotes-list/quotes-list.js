@@ -14,7 +14,6 @@ const QuotesList = ({ quotes }) => {
 			})}
 		</div>
 	);
-	// return ;
 };
 
 export default QuotesList;
