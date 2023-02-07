@@ -24,10 +24,6 @@ const fetchSearchProducts =
 		dispatch(searchProductRequested());
 		shopService
 			.getSearchProducts(word)
-			.then((data) => {
-				console.log(data);
-				return data;
-			})
 			.then((data) => dispatch(searchProductLoaded(data)))
 			.catch((error) => dispatch(searchProductFailure(error)));
 	};

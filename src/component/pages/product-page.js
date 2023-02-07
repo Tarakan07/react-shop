@@ -14,7 +14,13 @@ class ProductPage extends Component {
 	componentDidMount() {
 		this.props.fetchProductsByID(Number(this.props.match.params.id));
 	}
-	componentDidUpdate() {}
+	componentDidUpdate(prevProps) {
+		if (
+			this.props.product.id &&
+			prevProps.match.params.id != this.props.match.params.id
+		)
+			this.props.fetchProductsByID(Number(this.props.match.params.id));
+	}
 	addedToCart = () => {
 		this.props.productAddedToCart(Number(this.props.match.params.id));
 	};

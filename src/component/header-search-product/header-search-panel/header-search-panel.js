@@ -8,13 +8,14 @@ const HeaderSearchPanel = ({
 	loading,
 	error,
 }) => {
-	console.log(products);
 	const [activeLabel, setActiveLabel] = useState(false);
+	const [value, setValue] = useState("");
 	const clickSearch = () => {
 		if (document.querySelector(".search-block input").value === "")
 			setActiveLabel(!activeLabel);
 	};
 	const getValue = (e) => {
+		setValue(e.target.value);
 		if (e.target.value === "") clickSearch();
 		fetchSearchProducts(e.target.value);
 	};
@@ -27,7 +28,6 @@ const HeaderSearchPanel = ({
 		}
 	};
 	const classLabel = activeLabel ? "active" : "";
-
 	return (
 		<div className="header-search">
 			<div className="search-block">
@@ -37,6 +37,7 @@ const HeaderSearchPanel = ({
 					onClick={clickSearch}
 					onChange={(e) => getValue(e)}
 					type="text"
+					value={value}
 				/>
 			</div>
 			<div className="searched-block">
@@ -45,6 +46,7 @@ const HeaderSearchPanel = ({
 					loading={loading}
 					error={error}
 					activeLabel={activeLabel}
+					value={value}
 				/>
 			</div>
 		</div>
