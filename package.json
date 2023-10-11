@@ -1,10 +1,12 @@
 {
   "name": "react-shop",
+  "homepage": "https://tarakan07.github.io/react-shop/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "cra-template": "1.2.0",
+    "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",

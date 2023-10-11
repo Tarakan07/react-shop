@@ -15,7 +15,7 @@
 }
 
 .product-box-description {
-	min-width: 500px;
+	width: 40%;
 }
 .product-box-description .add-to-cart.hasCart {
 	background: #fff;
