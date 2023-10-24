@@ -12,7 +12,7 @@ const ProductsItem = ({
 		cartItems.find((el) => el.id === id) !== undefined ? "hasCart" : "";
 	return (
 		<React.Fragment>
-			<Link to={`/product/${id}`}>
+			<Link to={`react-shop/product/${id}`}>
 				<div className="image">
 					<img src={thumbnail} alt="" />
 					<div>
