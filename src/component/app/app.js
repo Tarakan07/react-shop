@@ -20,15 +20,15 @@ const App = () => {
 			<div className="project-block">
 				<HeaderShop />
 				<Switch>
-					<Route path="/react-shop/" component={MainPageShop} exact />
-					<Route path="/react-shop/product/:id/" component={ProductPage} />
-					<Route path="/react-shop/products/:filter/" render={ProductsPage} />
-					<Route path="/react-shop/products/" component={ProductsPage} />
-					<Route path="/react-shop/posts/:id" component={PostPage} />
-					<Route path="/react-shop/posts/" component={PostsPage} />
-					<Route path="/react-shop/quotes/:page" component={QuotesPage} />
-					<Route path="/react-shop/quotes/" component={QuotesPage} />
-					<Route path="/react-shop/cart" component={CartPage} />
+					<Route path="/" component={MainPageShop} exact />
+					<Route path="/product/:id/" component={ProductPage} />
+					<Route path="/products/:filter/" render={ProductsPage} />
+					<Route path="/products/" component={ProductsPage} />
+					<Route path="/posts/:id" component={PostPage} />
+					<Route path="/posts/" component={PostsPage} />
+					<Route path="/quotes/:page" component={QuotesPage} />
+					<Route path="/quotes/" component={QuotesPage} />
+					<Route path="/cart" component={CartPage} />
 				</Switch>
 				<FooterShop />
 			</div>
